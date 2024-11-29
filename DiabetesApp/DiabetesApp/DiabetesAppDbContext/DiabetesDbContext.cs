@@ -19,10 +19,10 @@ namespace DiabetesApp.DiabetesAppDbContext
                 .Property(e => e.MealTime)
                 .HasColumnType("datetime");
 
-            modelBuilder.Entity<Entry>()
+            /*modelBuilder.Entity<Entry>()
                 .HasOne(e => e.User)
                 .WithMany(u => u.Entries)
-                .HasForeignKey(p => p.UserId);
+                .HasForeignKey(p => p.UserId);*/
 
             modelBuilder.Entity<Pressure>()
                 .HasOne(p => p.User)

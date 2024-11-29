@@ -1,4 +1,6 @@
 using DiabetesApp.DiabetesAppDbContext;
+using DiabetesApp.Services;
+using DiabetesApp.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DiabetesDbContext>();
-
+builder.Services.AddScoped<IEntryService, EntryService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

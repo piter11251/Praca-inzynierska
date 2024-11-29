@@ -1,0 +1,18 @@
+[
+  {
+    "ContainingType": "DiabetesApp.Controllers.EntryController",
+    "Method": "CreateEntry",
+    "RelativePath": "api/entries/create-entry",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "DiabetesApp.Dto.CreateEntryDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

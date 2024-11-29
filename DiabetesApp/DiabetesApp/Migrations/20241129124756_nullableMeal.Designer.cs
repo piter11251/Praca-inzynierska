@@ -4,6 +4,7 @@ using DiabetesApp.DiabetesAppDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiabetesApp.Migrations
 {
     [DbContext(typeof(DiabetesDbContext))]
-    partial class DiabetesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241129124756_nullableMeal")]
+    partial class nullableMeal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +45,7 @@ namespace DiabetesApp.Migrations
                     b.Property<int>("SugarValue")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -171,9 +174,13 @@ namespace DiabetesApp.Migrations
 
             modelBuilder.Entity("DiabetesApp.Entities.Entry", b =>
                 {
-                    b.HasOne("DiabetesApp.Entities.User", null)
+                    b.HasOne("DiabetesApp.Entities.User", "User")
                         .WithMany("Entries")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DiabetesApp.Entities.PreferableSugarLevel", b =>
