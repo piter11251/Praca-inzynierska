@@ -6,7 +6,7 @@ namespace DiabetesApp.DiabetesAppDbContext
     public class DiabetesDbContext: DbContext
     {
         public DbSet<Entry> Entries { get; set; }
-        public DbSet<Pressure> Pressures { get; set; }
+        public DbSet<BloodPressure> Pressures { get; set; }
         public DbSet<User> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,10 +24,10 @@ namespace DiabetesApp.DiabetesAppDbContext
                 .WithMany(u => u.Entries)
                 .HasForeignKey(p => p.UserId);*/
 
-            modelBuilder.Entity<Pressure>()
+            /*modelBuilder.Entity<BloodPressure>()
                 .HasOne(p => p.User)
                 .WithMany(u => u.Pressures)
-                .HasForeignKey(p => p.UserId);
+                .HasForeignKey(p => p.UserId);*/
 
             modelBuilder.Entity<User>()
                 .HasOne(u => u.UserPreferences)

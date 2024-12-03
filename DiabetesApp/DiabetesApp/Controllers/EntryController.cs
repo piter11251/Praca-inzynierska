@@ -6,7 +6,7 @@ using DiabetesApp.Dto;
 namespace DiabetesApp.Controllers
 {
     [ApiController]
-    [Route("api/entries")]
+    [Route("api/sugar-entries")]
     public class EntryController : ControllerBase
     {
         private readonly DiabetesDbContext _context;
@@ -22,6 +22,20 @@ namespace DiabetesApp.Controllers
         {
             await _entryService.CreateEntry(dto);
             return Ok();
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> ModifyEntry([FromBody] ModifyEntryDto dto, int id)
+        {
+            await _entryService.ModifyEntry(dto, id);
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEntry([FromRoute] int id)
+        {
+            await _entryService.DeleteEntry(id);
+            return NoContent();
         }
     }
 }

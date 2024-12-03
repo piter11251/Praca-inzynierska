@@ -14,7 +14,7 @@ namespace DiabetesApp.Entities
         public DiabetesType DiabetesType { get; set; }
 
         public ICollection<Entry> Entries { get; set; }
-        public ICollection<Pressure> Pressures { get; set; }
+        public ICollection<BloodPressure> Pressures { get; set; }
         public UserPreferences UserPreferences { get; set; }
     }
 }
