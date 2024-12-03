@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DiabetesApp.DiabetesAppDbContext;
 using DiabetesApp.Services.Interfaces;
-using DiabetesApp.Dto;
+using DiabetesApp.Dto.EntryDtos;
+using System.Formats.Asn1;
 
 namespace DiabetesApp.Controllers
 {
@@ -36,6 +37,20 @@ namespace DiabetesApp.Controllers
         {
             await _entryService.DeleteEntry(id);
             return NoContent();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllEntries()
+        {
+            var entries = await _entryService.GetAllEntries();
+            return Ok(entries);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetEntryById([FromRoute] int id)
+        {
+            var entry = await _entryService.GetEntryById(id);
+            return Ok(entry);
         }
     }
 }

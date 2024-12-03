@@ -1,6 +1,8 @@
 using DiabetesApp.DiabetesAppDbContext;
-using DiabetesApp.Dto;
-using DiabetesApp.Dto.Validators;
+using DiabetesApp.Dto.BloodPressureDtos;
+using DiabetesApp.Dto.EntryDtos;
+using DiabetesApp.Dto.Validators.BloodPressure;
+using DiabetesApp.Dto.Validators.Entry;
 using DiabetesApp.Middleware;
 using DiabetesApp.Services;
 using DiabetesApp.Services.Interfaces;
@@ -16,12 +18,23 @@ builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsi
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// dbcontext i serwisy
 builder.Services.AddDbContext<DiabetesDbContext>();
 builder.Services.AddScoped<IEntryService, EntryService>();
 builder.Services.AddScoped<IBloodPressureService, BloodPressureService>();
+
+// walidatory
+
 builder.Services.AddScoped<IValidator<CreateEntryDto>, EntryDtoValidator<CreateEntryDto>>();
 builder.Services.AddScoped<IValidator<ModifyEntryDto>, EntryDtoValidator<ModifyEntryDto>>();
+builder.Services.AddScoped<IValidator<CreateBloodPressureEntryDto>, CreateBloodPressureDtoValidator>();
+builder.Services.AddScoped<IValidator<ModifyBloodPressureDto>, ModifyBloodPressureDtoValidator>();
+
+// middleware
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,4 +1,4 @@
-﻿using DiabetesApp.Dto;
+﻿using DiabetesApp.Dto.EntryDtos;
 using DiabetesApp.Entities;
 
 namespace DiabetesApp.Services.Interfaces
@@ -8,5 +8,7 @@ namespace DiabetesApp.Services.Interfaces
         Task CreateEntry(CreateEntryDto dto);
         Task ModifyEntry(ModifyEntryDto dto, int id);
         Task DeleteEntry(int id);
+        Task<List<GetEntryDto>> GetAllEntries();
+        Task<GetEntryDto> GetEntryById(int id);
     }
 }

@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiabetesApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c8a51945ecc3fab1131c33fa568e6c0aeb63a62")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef1458901a090769056be458e61c3f8660cbcabd")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiabetesApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiabetesApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

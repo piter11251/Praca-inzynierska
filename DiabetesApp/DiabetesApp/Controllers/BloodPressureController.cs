@@ -1,5 +1,5 @@
 ﻿using DiabetesApp.DiabetesAppDbContext;
-using DiabetesApp.Dto;
+using DiabetesApp.Dto.BloodPressureDtos;
 using DiabetesApp.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -43,6 +43,13 @@ namespace DiabetesApp.Controllers
         {
             var list = await _bloodPressureService.GetAllBloodPressureEntries();
             return Ok(list);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetBloodPressureEntryById([FromRoute] int id)
+        {
+            var entry = await _bloodPressureService.GetBloodPressureById(id);
+            return Ok(entry);
         }
 
     }

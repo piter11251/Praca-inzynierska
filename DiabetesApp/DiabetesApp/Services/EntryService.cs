@@ -1,5 +1,5 @@
 ﻿using DiabetesApp.DiabetesAppDbContext;
-using DiabetesApp.Dto;
+using DiabetesApp.Dto.EntryDtos;
 using DiabetesApp.Entities;
 using DiabetesApp.Entities.Enum;
 using DiabetesApp.Exceptions;
@@ -31,7 +31,7 @@ namespace DiabetesApp.Services
             }
             if(!Enum.TryParse<MealMarker>(dto.MealMarker, true, out var mealMarker))
             {
-                throw new Exception("Invalid MealMarkerValue");
+                throw new BadRequestException("Niepoprawna wartość pory pomiaru");
             }
             var entry = new Entry
             {
@@ -53,7 +53,7 @@ namespace DiabetesApp.Services
             }
             if (!Enum.TryParse<MealMarker>(dto.MealMarker, true, out var mealMarker))
             {
-                throw new Exception("Invalid MealMarkerValue");
+                throw new BadRequestException("Niepoprawna wartość pory pomiaru");
             }
             var entry = await _context.Entries
                 .FirstOrDefaultAsync(e => e.Id == id);
@@ -62,19 +62,11 @@ namespace DiabetesApp.Services
                 throw new NotFoundException("Nie odnaleziono takiego wpisu");
             }
 
-            if (dto.SugarValue.HasValue)
+            entry.SugarValue = dto.SugarValue ?? entry.SugarValue;
+            entry.MealTime = dto.MealTime ?? entry.MealTime;
+            if (!string.IsNullOrEmpty(dto.MealMarker))
             {
-                entry.SugarValue = dto.SugarValue.Value;
-            }
-
-            if (dto.MealTime.HasValue)
-            {
-                entry.MealTime = dto.MealTime.Value;
-            }
-
-            if (mealMarker != null)
-            {
-                entry.MealMarker = mealMarker;
+                entry.MealMarker = Enum.Parse<MealMarker>(dto.MealMarker, true);
             }
 
             await _context.SaveChangesAsync();
@@ -90,6 +82,47 @@ namespace DiabetesApp.Services
 
             _context.Entries.Remove(entry);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<GetEntryDto>> GetAllEntries()
+        {
+            var entries = await _context.Entries.ToListAsync();
+            var entryList = new List<GetEntryDto>();
+            if(entries == null)
+            {
+                throw new NotFoundException("Nie znaleziono żadnych wpisów");
+            }
+
+            foreach(var entry in entries)
+            {
+                var entryDto = new GetEntryDto
+                {
+                    SugarValue = entry.SugarValue,
+                    MealTime = entry.MealTime,
+                    MealMarker = Enum.GetName(typeof(MealMarker), entry.MealMarker)
+                };
+            }
+
+            return entryList;
+
+        }
+
+        public async Task<GetEntryDto> GetEntryById(int id)
+        {
+            var entry = await _context.Entries.FirstOrDefaultAsync(e => e.Id == id);
+            if(entry == null)
+            {
+                throw new NotFoundException("Nie ma takiego wpisu");
+            }
+
+            var entryDto = new GetEntryDto
+            {
+                SugarValue = entry.SugarValue,
+                MealTime = entry.MealTime,
+                MealMarker = Enum.GetName(typeof(MealMarker), entry.MealMarker)
+            };
+
+            return entryDto;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace DiabetesApp.Dto
+﻿namespace DiabetesApp.Dto.BloodPressureDtos
 {
     public class GetBloodPressureDto
     {

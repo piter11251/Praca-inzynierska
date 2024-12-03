@@ -1,6 +1,4 @@
-﻿
-
-using DiabetesApp.Dto;
+﻿using DiabetesApp.Dto.BloodPressureDtos;
 
 namespace DiabetesApp.Services.Interfaces
 {
@@ -10,5 +8,6 @@ namespace DiabetesApp.Services.Interfaces
         Task ModifyBloodPressureEntry(ModifyBloodPressureDto dto, int id);
         Task DeleteBloodPressureEntry(int id);
         Task<List<GetBloodPressureDto>> GetAllBloodPressureEntries();
+        Task<GetBloodPressureDto> GetBloodPressureById(int id);
     }
 }

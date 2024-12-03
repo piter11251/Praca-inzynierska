@@ -1,5 +1,5 @@
 ﻿using DiabetesApp.DiabetesAppDbContext;
-using DiabetesApp.Dto;
+using DiabetesApp.Dto.BloodPressureDtos;
 using DiabetesApp.Entities;
 using DiabetesApp.Exceptions;
 using DiabetesApp.Services.Interfaces;
@@ -87,6 +87,27 @@ namespace DiabetesApp.Services
             }
 
             return newEntries;
+        }
+
+        public async Task<GetBloodPressureDto> GetBloodPressureById(int id)
+        {
+            var bloodPressure = await _context.Pressures.FirstOrDefaultAsync(x => x.Id == id);
+            if(bloodPressure == null)
+            {
+                throw new NotFoundException("Nie znaleziono pomiaru");
+            }
+
+            var entryDto = new GetBloodPressureDto
+            {
+                StolicPressure = bloodPressure.StolicPressure,
+                DiastolicPressure = bloodPressure.DiastolicPressure,
+                Pulse = bloodPressure.Pulse,
+                MeasurementDate = bloodPressure.MeasureDate
+            };
+            if (bloodPressure.IsIrregularPulse.HasValue)
+                entryDto.IsIrregularPulse = bloodPressure.IsIrregularPulse.Value;
+
+            return entryDto;
         }
     }
 }

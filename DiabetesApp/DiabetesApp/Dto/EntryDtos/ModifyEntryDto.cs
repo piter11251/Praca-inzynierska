@@ -1,6 +1,6 @@
 ﻿using DiabetesApp.Entities.Enum;
 
-namespace DiabetesApp.Dto
+namespace DiabetesApp.Dto.EntryDtos
 {
     public class ModifyEntryDto
     {

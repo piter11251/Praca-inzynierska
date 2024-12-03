@@ -52,7 +52,7 @@ namespace DiabetesApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Pressures");
+                    b.ToTable("Pressures", (string)null);
                 });
 
             modelBuilder.Entity("DiabetesApp.Entities.Entry", b =>
@@ -82,7 +82,7 @@ namespace DiabetesApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Entries");
+                    b.ToTable("Entries", (string)null);
                 });
 
             modelBuilder.Entity("DiabetesApp.Entities.PreferableSugarLevel", b =>
@@ -109,7 +109,7 @@ namespace DiabetesApp.Migrations
 
                     b.HasIndex("UserPreferencesId");
 
-                    b.ToTable("PreferableSugarLevel");
+                    b.ToTable("PreferableSugarLevel", (string)null);
                 });
 
             modelBuilder.Entity("DiabetesApp.Entities.User", b =>
@@ -147,7 +147,7 @@ namespace DiabetesApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("DiabetesApp.Entities.UserPreferences", b =>
@@ -166,7 +166,7 @@ namespace DiabetesApp.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("UserPreferences");
+                    b.ToTable("UserPreferences", (string)null);
                 });
 
             modelBuilder.Entity("DiabetesApp.Entities.BloodPressure", b =>

@@ -1,9 +1,10 @@
-﻿using DiabetesApp.Entities.Enum;
+﻿using DiabetesApp.Dto.EntryDtos;
+using DiabetesApp.Entities.Enum;
 using FluentValidation;
 
-namespace DiabetesApp.Dto.Validators
+namespace DiabetesApp.Dto.Validators.Entry
 {
-    public class EntryDtoValidator<TDto>: AbstractValidator<TDto> where TDto: class
+    public class EntryDtoValidator<TDto> : AbstractValidator<TDto> where TDto : class
     {
         public EntryDtoValidator()
         {
@@ -31,17 +32,17 @@ namespace DiabetesApp.Dto.Validators
                 RuleFor(x => ((ModifyEntryDto)(object)x).SugarValue)
                 .GreaterThan(0)
                 .When(x => ((ModifyEntryDto)(object)x).SugarValue.HasValue)
-                .WithMessage("SugarValue must be greater than 0.");
+                .WithMessage("Cukier powinien być większy niż 0");
 
                 RuleFor(x => ((ModifyEntryDto)(object)x).MealTime)
                     .Must(date => date <= DateTime.Now)
                     .When(x => ((ModifyEntryDto)(object)x).MealTime.HasValue)
-                    .WithMessage("MealTime cannot be in the future.");
+                    .WithMessage("Data i godzina posiłku nie może być z przyszłości");
 
                 RuleFor(x => ((ModifyEntryDto)(object)x).MealMarker)
                     .IsEnumName(typeof(MealMarker), caseSensitive: false)
                     .When(x => !string.IsNullOrEmpty(((ModifyEntryDto)(object)x).MealMarker))
-                    .WithMessage("Invalid MealMarker value.");
+                    .WithMessage("Niepoprawna wartość pory pomiaru");
             });
 
         }
