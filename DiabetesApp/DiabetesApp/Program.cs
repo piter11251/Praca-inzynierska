@@ -3,11 +3,14 @@ using DiabetesApp.Dto.BloodPressureDtos;
 using DiabetesApp.Dto.EntryDtos;
 using DiabetesApp.Dto.Validators.BloodPressure;
 using DiabetesApp.Dto.Validators.Entry;
+using DiabetesApp.Entities;
 using DiabetesApp.Middleware;
 using DiabetesApp.Services;
 using DiabetesApp.Services.Interfaces;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +23,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // dbcontext i serwisy
-builder.Services.AddDbContext<DiabetesDbContext>();
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<DiabetesDbContext>()
+    .AddDefaultTokenProviders();
+builder.Services.AddDbContext<DiabetesDbContext>(options => 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IEntryService, EntryService>();
 builder.Services.AddScoped<IBloodPressureService, BloodPressureService>();
 

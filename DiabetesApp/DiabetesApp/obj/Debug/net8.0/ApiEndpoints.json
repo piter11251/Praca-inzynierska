@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DiabetesApp.Dto.CreateBloodPressureEntryDto",
+        "Type": "DiabetesApp.Dto.BloodPressureDtos.CreateBloodPressureEntryDto",
         "IsRequired": true
       }
     ],
@@ -35,7 +35,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DiabetesApp.Dto.ModifyBloodPressureDto",
+        "Type": "DiabetesApp.Dto.BloodPressureDtos.ModifyBloodPressureDto",
         "IsRequired": true
       },
       {
@@ -63,6 +63,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "DiabetesApp.Controllers.BloodPressureController",
+    "Method": "GetBloodPressureEntryById",
+    "RelativePath": "api/pressure-entries/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DiabetesApp.Controllers.EntryController",
+    "Method": "GetAllEntries",
+    "RelativePath": "api/sugar-entries",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "DiabetesApp.Controllers.EntryController",
     "Method": "ModifyEntry",
     "RelativePath": "api/sugar-entries/{id}",
@@ -72,7 +98,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DiabetesApp.Dto.ModifyEntryDto",
+        "Type": "DiabetesApp.Dto.EntryDtos.ModifyEntryDto",
         "IsRequired": true
       },
       {
@@ -101,6 +127,22 @@
   },
   {
     "ContainingType": "DiabetesApp.Controllers.EntryController",
+    "Method": "GetEntryById",
+    "RelativePath": "api/sugar-entries/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DiabetesApp.Controllers.EntryController",
     "Method": "CreateEntry",
     "RelativePath": "api/sugar-entries/create-entry",
     "HttpMethod": "POST",
@@ -109,7 +151,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DiabetesApp.Dto.CreateEntryDto",
+        "Type": "DiabetesApp.Dto.EntryDtos.CreateEntryDto",
         "IsRequired": true
       }
     ],

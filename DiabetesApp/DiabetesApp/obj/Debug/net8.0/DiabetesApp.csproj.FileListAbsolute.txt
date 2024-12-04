@@ -145,3 +145,8 @@ C:\Users\admin\Documents\GitHub\Praca-inzynierska\DiabetesApp\DiabetesApp\obj\De
 C:\Users\admin\Documents\GitHub\Praca-inzynierska\DiabetesApp\DiabetesApp\bin\Debug\net8.0\FluentValidation.dll
 C:\Users\admin\Documents\GitHub\Praca-inzynierska\DiabetesApp\DiabetesApp\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 C:\Users\admin\Documents\GitHub\Praca-inzynierska\DiabetesApp\DiabetesApp\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\admin\Documents\GitHub\Praca-inzynierska\DiabetesApp\DiabetesApp\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\admin\Documents\GitHub\Praca-inzynierska\DiabetesApp\DiabetesApp\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\admin\Documents\GitHub\Praca-inzynierska\DiabetesApp\DiabetesApp\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\admin\Documents\GitHub\Praca-inzynierska\DiabetesApp\DiabetesApp\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\admin\Documents\GitHub\Praca-inzynierska\DiabetesApp\DiabetesApp\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
