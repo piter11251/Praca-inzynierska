@@ -59,6 +59,16 @@ namespace Demo.ApiClient
             }
         }
 
+        public async Task RegisterAsync(RegisterDto dto)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/account/register", dto);
+            if(!response.IsSuccessStatusCode)
+            {
+                var errorMessage = await response.Content.ReadAsStringAsync();
+                throw new Exception($"Błąd rejestracji: {errorMessage}");
+            }
+        }
+
         /*public async Task<Product?> GetById(int id)
         {
             return await _httpClient.GetFromJsonAsync<Product?>($"/api/Product/{id}");

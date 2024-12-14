@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             xmlns:local="clr-namespace:DiabetesAppFrontend.Enums"
+             x:Class="DiabetesAppFrontend.Views.RegisterPage"
+             Title="RegisterPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Rejestracja" FontSize="24"  HorizontalOptions="Center" />
+            <Entry x:Name="EmailEntry" 
+                       Placeholder="Email" 
+                       Keyboard="Email"/>
+            <Label x:Name="EmailErrorLabel" Text="Red" IsVisible="False" />
+
+            <Entry x:Name="PasswordEntry" 
+                       Placeholder="Haslo" 
+                       IsPassword="True" />
+            <Label x:Name="PasswordErrorLabel" TextColor="Red" IsVisible="False" />
+
+            <Entry x:Name="ConfirmPasswordEntry" 
+                       Placeholder="Potwierdz haslo" 
+                       IsPassword="True" />
+            <Label x:Name="ConfirmPasswordErrorLabel" TextColor="Red" IsVisible="False" />
+
+            <Entry x:Name="FirstNameEntry"
+                       Placeholder="Imie" />
+            <Label x:Name="FirstNameErrorLabel" TextColor="Red" IsVisible="False" />
+
+            <Entry x:Name="LastNameEntry"
+                        Placeholder="Nazwisko" />
+
+            <Label x:Name="LastNameErrorLabel" TextColor="Red" IsVisible="False" />
+
+            <DatePicker x:Name="BirthDatePicker"
+                            Format="yyyy-MM-dd"
+                            MaximumDate="{x:Static sys:DateTime.Now}" />
+            <Label x:Name="BirthDateErrorLabel" TextColor="Red" IsVisible="False" />
+
+            <Picker x:Name="GenderPicker"
+                        Title="Płeć"
+                        ItemsSource="{x:Static local:GenderEnum.Values}" />
+            <Label x:Name="GenderErrorLabel" TextColor="Red" IsVisible="False" />
+
+            <Picker x:Name="DiabetesTypePicker"
+                        Title="Typ cukrzycy"
+                        ItemsSource="{x:Static local:DiabetesTypeEnum.Values}" />
+            <Label x:Name="DiabetesTypeErrorLabel" TextColor="Red" IsVisible="False" />
+
+            <Button Text="Zarejestruj sie"
+                        Clicked="OnRegisterButtonClicked" />
+            <Label x:Name="GeneralErrorLabel" TextColor="Red" IsVisible="True" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -19,9 +19,9 @@ namespace DiabetesAppFrontend
             var token = SecureStorage.GetAsync("auth_token").Result;
             if(!string.IsNullOrEmpty(token))
             {
-                return new HomePage(_apiService);
+                return new NavigationPage(new HomePage(_apiService));
             }
-            return new LoginPage(_apiService);
+            return new NavigationPage(new MainPage(_apiService));
         }
     }
 }

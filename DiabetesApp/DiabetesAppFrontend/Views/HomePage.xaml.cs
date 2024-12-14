@@ -39,6 +39,6 @@ public partial class HomePage : ContentPage
 		{
             Console.WriteLine("token nie usuniety");
 		}
-		Application.Current.MainPage = new NavigationPage(new LoginPage(_apiService));
+		Application.Current.MainPage = new NavigationPage(new MainPage(_apiService));
 	}
 }
