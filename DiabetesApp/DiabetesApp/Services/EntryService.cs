@@ -22,7 +22,7 @@ namespace DiabetesApp.Services
             _createValidator = createValidator;
         }
 
-        public async Task CreateEntry(CreateEntryDto dto)
+        public async Task CreateEntry(CreateEntryDto dto, string userId)
         {
             var validationResult = await _createValidator.ValidateAsync(dto);
             if(!validationResult.IsValid)
@@ -35,6 +35,7 @@ namespace DiabetesApp.Services
             }
             var entry = new Entry
             {
+                UserId = userId,
                 SugarValue = dto.SugarValue,
                 MealTime = dto.MealTime,
                 MealMarker = mealMarker
@@ -87,23 +88,18 @@ namespace DiabetesApp.Services
         public async Task<List<GetEntryDto>> GetAllEntries()
         {
             var entries = await _context.Entries.ToListAsync();
-            var entryList = new List<GetEntryDto>();
+            
             if(entries == null)
             {
                 throw new NotFoundException("Nie znaleziono żadnych wpisów");
             }
 
-            foreach(var entry in entries)
+            return entries.Select(entry => new GetEntryDto
             {
-                var entryDto = new GetEntryDto
-                {
-                    SugarValue = entry.SugarValue,
-                    MealTime = entry.MealTime,
-                    MealMarker = Enum.GetName(typeof(MealMarker), entry.MealMarker)
-                };
-            }
-
-            return entryList;
+                SugarValue = entry.SugarValue,
+                MealTime = entry.MealTime,
+                MealMarker = Enum.GetName(typeof(MealMarker), entry.MealMarker)
+            }).ToList();
 
         }
 

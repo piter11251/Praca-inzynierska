@@ -1,5 +1,7 @@
-﻿using DiabetesApp.Dto.Account;
+﻿using DiabetesApp.DiabetesAppDbContext;
+using DiabetesApp.Dto.Account;
 using DiabetesApp.Entities;
+using DiabetesApp.Entities.Enum;
 using DiabetesApp.Exceptions;
 using DiabetesApp.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -14,11 +16,13 @@ namespace DiabetesApp.Services
     {
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
+        private readonly DiabetesDbContext _context;
 
-        public AccountService(SignInManager<User> signInManager, UserManager<User> userManager)
+        public AccountService(SignInManager<User> signInManager, UserManager<User> userManager, DiabetesDbContext context)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _context = context;
         }
 
         public async Task<string> Login(LoginDto dto)
@@ -49,13 +53,16 @@ namespace DiabetesApp.Services
                 Gender = dto.Gender,
                 DiabetesType = dto.DiabetesType,
             };
-
             var result = await _userManager.CreateAsync(user, dto.Password);
+            
             if(!result.Succeeded)
             {
                 throw new BadRequestException(result.Errors.ToString());
             }
-
+            var userPreferences = InitializeUserPreferences(user);
+            user.UserPreferences = userPreferences;
+            _context.UserPreferences.Add(userPreferences);
+            await _context.SaveChangesAsync();
 
         }
 
@@ -79,6 +86,35 @@ namespace DiabetesApp.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
 
+        }
+
+        private UserPreferences InitializeUserPreferences(User user)
+        {
+            return new UserPreferences
+            {
+                UserId = user.Id,
+                PreferableSugarLevels = new List<PreferableSugarLevel>
+                {
+                    new PreferableSugarLevel
+                    {
+                        MealMarker = MealMarker.On_Empty_Stomach,
+                        MinValue = 70,
+                        MaxValue = 110
+                    },
+                    new PreferableSugarLevel
+                    {
+                        MealMarker = MealMarker.Before_Meal,
+                        MinValue = 70,
+                        MaxValue = 110
+                    },
+                    new PreferableSugarLevel
+                    {
+                        MealMarker = MealMarker.After_Meal,
+                        MinValue = 70,
+                        MaxValue = 180
+                    }
+                }
+            };
         }
     }
 }

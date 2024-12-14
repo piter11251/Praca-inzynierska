@@ -3,6 +3,8 @@ using DiabetesApp.DiabetesAppDbContext;
 using DiabetesApp.Services.Interfaces;
 using DiabetesApp.Dto.EntryDtos;
 using System.Formats.Asn1;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace DiabetesApp.Controllers
 {
@@ -21,7 +23,12 @@ namespace DiabetesApp.Controllers
         [HttpPost("create-entry")]
         public async Task<IActionResult> CreateEntry([FromBody] CreateEntryDto dto)
         {
-            await _entryService.CreateEntry(dto);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if(string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized("Nie jesteś zalogowany");
+            }
+            await _entryService.CreateEntry(dto, userId);
             return Ok();
         }
 

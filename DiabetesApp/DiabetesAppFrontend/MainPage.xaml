@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DiabetesAppFrontend.MainPage">
+
+    <Grid RowDefinitions="*, *, *" Padding="20">
+        <Label Text="Witaj w DiabetesApp!"
+               FontSize="24"
+               HorizontalOptions="Center"
+               VerticalOptions="End"/>
+        <StackLayout Grid.Row="1" Spacing="20" HorizontalOptions="Center">
+            <Button Text="Logowanie"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Clicked="OnLoginButtonClicked"
+                     />
+            <Button Text="Rejestracja"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start"
+                    
+                    Grid.Row="2"/>
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

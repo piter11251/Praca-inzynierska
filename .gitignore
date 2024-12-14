@@ -1,0 +1,73 @@
+# Visual Studio / Rider / VSCode specific files
+.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vscode
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+build/
+x64/
+x86/
+[Oo]bj/
+[Bb]in/
+[Oo]ut/
+
+# NuGet Packages
+*.nupkg
+# The packages folder can be ignored because of PackageRestore
+**/packages/*
+!**/packages/build/
+# Uncomment if using NuGet PackageReference
+# **/packages/*
+
+# .NET Core/Maui/ASP.NET files
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET specific
+appsettings.Development.json
+appsettings.*.json.user
+
+# Maui specific files
+bin/Debug/
+bin/Release/
+*.db
+*.db-shm
+*.db-wal
+
+# Local test and environment files
+.env
+.env.*.local
+*.local.settings.json
+
+# Logs and database
+*.log
+logs/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# Rider Specific
+*.iml
+*.idea/
+.idea/
+*.sln.iml
+*.tmp
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# JetBrains Rider and Resharper cache
+_ReSharper*/
+*.[Rr]e[Ss]harper

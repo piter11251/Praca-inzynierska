@@ -5,7 +5,7 @@ namespace DiabetesApp.Services.Interfaces
 {
     public interface IEntryService
     {
-        Task CreateEntry(CreateEntryDto dto);
+        Task CreateEntry(CreateEntryDto dto, string userId);
         Task ModifyEntry(ModifyEntryDto dto, int id);
         Task DeleteEntry(int id);
         Task<List<GetEntryDto>> GetAllEntries();

@@ -33,6 +33,7 @@ namespace DiabetesApp.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto dto)
         {
+            Console.WriteLine($"Login attempt: {dto.Email}");
             var token = await _accountService.Login(dto);
             return Ok(token);
         }
