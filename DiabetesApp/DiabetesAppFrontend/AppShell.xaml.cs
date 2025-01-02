@@ -1,8 +1,12 @@
-﻿namespace DiabetesAppFrontend
+﻿using Demo.ApiClient;
+using DiabetesAppFrontend.Views;
+
+namespace DiabetesAppFrontend
 {
     public partial class AppShell : Shell
     {
-        public AppShell()
+
+        public AppShell(DemoApiClientService apiService)
         {
             InitializeComponent();
         }

@@ -1,9 +1,10 @@
 ﻿
 using Demo.ApiClient;
 using Demo.ApiClient.IoC;
-using DiabetesAppFrontend.Services;
 using DiabetesAppFrontend.Views;
+using Microcharts.Maui;
 using Microsoft.Extensions.Logging;
+using Syncfusion.Maui.Core.Hosting;
 
 namespace DiabetesAppFrontend
 {
@@ -12,6 +13,7 @@ namespace DiabetesAppFrontend
         public static MauiApp CreateMauiApp()
         {
             AppContext.SetSwitch("System.Reflection.NullabilityInfoContext.IsSupported", true);
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NMaF5cXmBCf0xwWmFZfVtgdl9FZVZQRGY/P1ZhSXxXd0dgWX5ac3FURmhVV0Y="); 
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
@@ -19,9 +21,12 @@ namespace DiabetesAppFrontend
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+                    fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons");
+                    fonts.AddFont("MaterialSymbolsOutlined.ttf", "MaterialSymbols");
+                })
+                .ConfigureSyncfusionCore();
             builder.Services.AddDemoApiClientService(x => x.BaseApiAddress = "http://10.0.2.2:5265");
-            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<LandingPage>();
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddSingleton(async provider =>
             {
@@ -30,7 +35,7 @@ namespace DiabetesAppFrontend
                 return client;
             });
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

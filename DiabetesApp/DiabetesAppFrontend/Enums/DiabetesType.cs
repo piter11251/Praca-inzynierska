@@ -14,6 +14,14 @@ namespace DiabetesAppFrontend.Enums
 
     public static class DiabetesTypeEnum
     {
-        public static List<string> Values => Enum.GetNames(typeof(DiabetesType)).ToList();
+        public static List<string> Values => new List<string> { "Typ 1", "Typ 2" };
+        public static string FriendlyNames(DiabetesType type)
+        {
+            return type switch
+            {
+                DiabetesType.Type_One => "Typ 1",
+                DiabetesType.Type_Two => "Typ 2"
+            };
+        }
     }
 }

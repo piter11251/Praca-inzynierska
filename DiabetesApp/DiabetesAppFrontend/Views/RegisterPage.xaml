@@ -4,7 +4,7 @@
              xmlns:sys="clr-namespace:System;assembly=System.Runtime"
              xmlns:local="clr-namespace:DiabetesAppFrontend.Enums"
              x:Class="DiabetesAppFrontend.Views.RegisterPage"
-             Title="RegisterPage">
+             Title="">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
             <Label Text="Rejestracja" FontSize="24"  HorizontalOptions="Center" />

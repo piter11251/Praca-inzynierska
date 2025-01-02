@@ -58,10 +58,26 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<MauiFont Include="Resources\Fonts\MaterialIcons-Regular.ttf" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <None Remove="Resources\Fonts\MaterialIcons-Regular.ttf" />
+	  <None Remove="Resources\Fonts\MaterialSymbolsOutlined.ttf" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="Microcharts.Maui" Version="1.0.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Maui.Resizetizer" Version="9.0.21" />
+		<PackageReference Include="SkiaSharp.Views" Version="3.116.1" />
+		<PackageReference Include="Syncfusion.Licensing" Version="28.1.36" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="28.1.36" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="28.1.36" />
+		<PackageReference Include="Syncfusion.Maui.Picker" Version="28.1.33" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -69,6 +85,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="LandingPage.xaml.cs">
+	    <DependentUpon>LandingPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\BloodPressurePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -76,6 +101,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\RegisterPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SugarEntryFlyoutPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SugarEntryView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

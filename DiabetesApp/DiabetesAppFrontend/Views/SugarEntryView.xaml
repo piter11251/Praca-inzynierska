@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DiabetesAppFrontend.Enums"
+             xmlns:icons="clr-namespace:DiabetesAppFrontend.Models.Icons"
+             x:Class="DiabetesAppFrontend.Views.SugarEntryView"
+             Title=""
+             >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <VerticalStackLayout Grid.Row="1" Padding="20" Spacing="15">
+            <Entry x:Name="SugarEntry" Keyboard="Numeric" Placeholder="Pomiar cukru"/>
+            <DatePicker x:Name="EntryDate" Format="yyyy-MM-dd" MaximumDate="{x:Static sys:DateTime.Now}" />
+            <TimePicker x:Name="SelectedTime" Format="HH:mm" />
+            <Picker x:Name="MealType" Title="Typ posilku" ItemsSource="{x:Static local:MealTypeEnum.Values}"></Picker>
+            <Picker x:Name="MealMarker" Title="Pora posilku" ItemsSource="{x:Static local:MealMarkerEnum.Values}"></Picker>
+
+            <Button Text="Przeslij pomiar" Clicked="OnSendEntryClicked" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

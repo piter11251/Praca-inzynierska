@@ -2,12 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DiabetesAppFrontend.Views.LoginPage"
-             Title="LoginPage">
+             Title="">
     <VerticalStackLayout Padding="20" Spacing="15">
         <Label Text="Logowanie" FontSize="24" HorizontalOptions="Center"/>
         <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email"/>
         <Entry x:Name="PasswordEntry" Placeholder="Haslo" IsPassword="True"/>
         <Button Text="Zaloguj" Clicked="OnLoginButtonClicked"/>
+        <Label Text="Nie posiadasz jeszcze konta? Zarejestruj sie."
+               FontSize="12"
+               FontAttributes="Italic"
+               HorizontalOptions="Center"
+               VerticalOptions="End">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnRegisterLinkTapped"/>
+            </Label.GestureRecognizers>
+        </Label>
         <Label x:Name="ErrorMessageLabel" TextColor="Red" IsVisible="False"/>
     </VerticalStackLayout>
 </ContentPage>

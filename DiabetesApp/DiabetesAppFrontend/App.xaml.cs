@@ -11,7 +11,7 @@ namespace DiabetesAppFrontend
         {
             InitializeComponent();
             _apiService = apiService;
-            MainPage = new NavigationPage(DetermineMainPage());
+            MainPage = DetermineMainPage();
         }
 
         private Page DetermineMainPage()
@@ -19,9 +19,9 @@ namespace DiabetesAppFrontend
             var token = SecureStorage.GetAsync("auth_token").Result;
             if(!string.IsNullOrEmpty(token))
             {
-                return new NavigationPage(new HomePage(_apiService));
+                return new SugarEntryFlyoutPage(_apiService);
             }
-            return new NavigationPage(new MainPage(_apiService));
+            return new NavigationPage(new LandingPage(_apiService));
         }
     }
 }

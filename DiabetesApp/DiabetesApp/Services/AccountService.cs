@@ -71,7 +71,8 @@ namespace DiabetesApp.Services
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim("given_name", user.FirstName)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretKeyDon'tShareIt1234567890"));

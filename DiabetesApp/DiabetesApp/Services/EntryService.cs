@@ -29,16 +29,13 @@ namespace DiabetesApp.Services
             {
                 throw new ValidationException(validationResult.Errors);
             }
-            if(!Enum.TryParse<MealMarker>(dto.MealMarker, true, out var mealMarker))
-            {
-                throw new BadRequestException("Niepoprawna wartość pory pomiaru");
-            }
+            
             var entry = new Entry
             {
                 UserId = userId,
                 SugarValue = dto.SugarValue,
                 MealTime = dto.MealTime,
-                MealMarker = mealMarker
+                MealMarker = dto.MealMarker
             };
 
             await _context.Entries.AddAsync(entry);

@@ -22,9 +22,7 @@ namespace DiabetesApp.Dto.Validators.Entry
                     .Must(date => date <= DateTime.Now)
                     .WithMessage("Nie mozesz podac daty z przyszlosci");
 
-                RuleFor(x => ((CreateEntryDto)(object)x).MealMarker)
-                    .Must(value => Enum.TryParse<MealMarker>(value, true, out _))
-                    .WithMessage("Poprawna wartość to: On_Empty_Stomach/Before_Meal/After_Meal");
+                
             });
 
             When(dto => dto is ModifyEntryDto, () =>
