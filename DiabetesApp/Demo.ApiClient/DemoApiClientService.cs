@@ -79,6 +79,16 @@ namespace Demo.ApiClient
             }
         }
 
+        public async Task AddBloodPressureAsync(BloodPressureDto dto)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/pressure-entries/create-pressure", dto);
+            if(!response.IsSuccessStatusCode)
+            {
+                var errorMessage = await response.Content.ReadAsStringAsync();
+                throw new Exception($"Nie udalo sie przeslac pomiaru: {errorMessage}");
+            }
+        }
+
         /*public async Task<Product?> GetById(int id)
         {
             return await _httpClient.GetFromJsonAsync<Product?>($"/api/Product/{id}");

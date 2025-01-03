@@ -10,6 +10,7 @@ namespace DiabetesAppFrontend
         public App(DemoApiClientService apiService)
         {
             InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzY1NDMxMUAzMjM4MmUzMDJlMzBESVVaSnkrUkoycDI1T3RGMWRiUWZzS3NXeThhb0JBb0pmZHR5ajhzcVd3PQ==");
             _apiService = apiService;
             MainPage = DetermineMainPage();
         }

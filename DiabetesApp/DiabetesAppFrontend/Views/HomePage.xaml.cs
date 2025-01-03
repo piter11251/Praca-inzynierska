@@ -1,7 +1,9 @@
 
+using Android.Graphics;
 using AndroidX.Navigation;
 using Demo.ApiClient;
 using Microcharts;
+using Microsoft.Maui.Graphics.Text;
 using SkiaSharp;
 using Syncfusion.Maui.Charts;
 using System.Linq;
@@ -23,33 +25,7 @@ public partial class HomePage : ContentPage
         NavigationPage.SetHasNavigationBar(this, true);
         Title = "";
 
-        var chart = new SfCartesianChart
-        {
-            HorizontalOptions = LayoutOptions.FillAndExpand,
-            VerticalOptions = LayoutOptions.FillAndExpand
-        };
-
-        var categoryAxis = new CategoryAxis
-        {
-            Title = new ChartAxisTitle
-            {
-                Text = "Dzien pomiaru"
-            }
-        };
-
-        chart.XAxes.Add(categoryAxis);
-
-        var numericalAxis = new NumericalAxis
-        {
-            Title = new ChartAxisTitle
-            {
-                Text = "Cukier"
-            },
-            Minimum = 40,
-            Maximum = 150,
-            Interval = 50
-        };
-
+        
         var mySugarData = new List<SugarData>
         {
             new SugarData { DayNumber = "1", SugarValue = 120},
@@ -59,29 +35,73 @@ public partial class HomePage : ContentPage
             new SugarData { DayNumber = "5", SugarValue = 110},
         };
 
-        var splineSeries = new SplineSeries
+        chart.TooltipBehavior = new ChartTooltipBehavior
+        {
+            Duration = 5000,
+            Background = Colors.Black,
+            TextColor = Colors.White,
+
+        };
+        ChartTrackballBehavior trackball = new ChartTrackballBehavior
+        {
+            ShowLine = false,
+            DisplayMode = LabelDisplayMode.FloatAllPoints,
+        };
+        chart.TrackballBehavior = trackball;
+
+        var lineSeries = new LineSeries
         {
             ItemsSource = mySugarData,
+            EnableTooltip = true,
             XBindingPath = "DayNumber",
             YBindingPath = "SugarValue",
-            Type = SplineType.Cardinal,
-            Label = "Wartosci",
-            ShowDataLabels = true
-        };
+            MarkerSettings = new ChartMarkerSettings
+            {
+                Type = ShapeType.Circle,
 
-        chart.Series.Add(splineSeries);
-        ChartContainer.Content = chart;
+                Fill = new SolidColorBrush(Colors.Red),
+                Stroke = new SolidColorBrush(Colors.Black),
+                StrokeWidth = 3,
+                Width = 10,
+                Height = 10,
+            },
+
+
+            ShowDataLabels = true,
+            DataLabelSettings = new CartesianDataLabelSettings
+            {
+                LabelStyle = new ChartDataLabelStyle
+                {
+                    TextColor = Colors.Black,
+                    FontSize = 12
+                }
+            }
+        };
+        chart.Series.Add(lineSeries);
+
+
+        
+
     }
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
 
-        var token = await _apiService.GetAuthTokenAsync();
-        if (!string.IsNullOrEmpty(token))
+        var token = await SecureStorage.GetAsync("auth_token");
+        if (string.IsNullOrEmpty(token))
+        {
+            await DisplayAlert("Blad", "Nie jestes zalogowany. Zaloguj sie, aby uzyskac dostep", "OK");
+            Application.Current.MainPage = new NavigationPage(new LoginPage(_apiService));
+            return;
+        }
+        try
         {
             var parts = token.Split('.');
-            if (parts.Length < 2) return;
+            if (parts.Length < 2)
+            {
+                throw new Exception("Nieprawidlowy token");
+            }
 
             var payload64 = parts[1];
             switch(payload64.Length % 4)
@@ -92,17 +112,23 @@ public partial class HomePage : ContentPage
             var jsonPayload = Encoding.UTF8.GetString(Convert.FromBase64String(payload64));
             Console.WriteLine("Payload JSON: " + jsonPayload);
             var claims = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonPayload);
-            foreach (var claim in claims)
+            if(claims != null)
             {
-                Console.WriteLine($"Claim: {claim.Key} - {claim.Value}");
+                string firstNameKey = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname";
+                string firstName = claims.TryGetValue(firstNameKey, out var value) ? value?.ToString() : "Unknown";
+                WelcomeLabel.Text = $"Zalogowano {firstName}";
             }
-            string firstNameKey = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname";
-            string firstName = claims.TryGetValue(firstNameKey, out var value) ? value?.ToString() : "Unknown";
-            WelcomeLabel.Text = $"Zalogowano {firstName}";
+            else
+            {
+                throw new Exception("Nie udalo sie rozkodowac tokena");
+            }
+           
         }
-        else
+        catch(Exception ex)
         {
-            Application.Current.MainPage = new NavigationPage(new LandingPage(_apiService));
+            Console.WriteLine($"Blad autoryzacji: {ex.Message}");
+            await DisplayAlert("Blad", "Sesja wygasla. Zaloguj sie ponownie.", "OK");
+            Application.Current.MainPage = new NavigationPage(new LoginPage(_apiService));
         }
     }
 

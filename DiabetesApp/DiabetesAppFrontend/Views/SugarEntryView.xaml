@@ -23,4 +23,4 @@
             <Button Text="Przeslij pomiar" Clicked="OnSendEntryClicked" />
         </VerticalStackLayout>
     </Grid>
-</ContentPage>
+</ContentPage> 

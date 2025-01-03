@@ -12,5 +12,6 @@
         <CheckBox x:Name="IrregularPulseCheckbox" CheckedChanged="OnIrregularPulseChecked" IsChecked="false" />
         <DatePicker x:Name="EntryDate" Format="yyyy-MM-dd" MaximumDate="{x:Static sys:DateTime.Now}" />
         <TimePicker x:Name="SelectedTime" Format="HH:mm" />
+        <Button Text="Przeslij pomiar" Clicked="OnSendEntryClicked" />
     </VerticalStackLayout>
 </ContentPage>

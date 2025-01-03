@@ -15,14 +15,16 @@ namespace DiabetesApp.Services
             _context = context;
         }
 
-        public async Task CreateBloodPressureEntry(CreateBloodPressureEntryDto dto)
+        public async Task CreateBloodPressureEntry(CreateBloodPressureEntryDto dto, string userId)
         {
             if(dto == null)
             {
                 throw new ArgumentNullException("Prosze wypelnic formularz");
             }
+
             var entry = new BloodPressure
             {
+                UserId = userId,
                 StolicPressure = dto.StolicPressure,
                 DiastolicPressure = dto.DiastolicPressure,
                 Pulse = dto.Pulse,

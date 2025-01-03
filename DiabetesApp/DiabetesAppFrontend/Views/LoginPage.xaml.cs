@@ -19,7 +19,7 @@ public partial class LoginPage : ContentPage
 
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
-            ErrorMessageLabel.Text = "Proszê wprowadziæ email i has³o";
+            ErrorMessageLabel.Text = "Proszê wprowadziæ email i haslo";
             ErrorMessageLabel.IsVisible = true;
             return;
         }
@@ -30,12 +30,12 @@ public partial class LoginPage : ContentPage
             if (!string.IsNullOrEmpty(token))
             {
                 SecureStorage.SetAsync("auth_token", token);
-                Application.Current.MainPage = new NavigationPage(new HomePage(_apiService));
+                Application.Current.MainPage = new SugarEntryFlyoutPage(_apiService);
             }
         }
         catch (Exception ex)
         {
-            ErrorMessageLabel.Text = $"Wyst¹pi³ b³¹d: {ex.Message}";
+            ErrorMessageLabel.Text = $"Wystapil blad: {ex.Message}";
             ErrorMessageLabel.IsVisible = true;
         }
     }

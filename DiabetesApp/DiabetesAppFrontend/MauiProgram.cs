@@ -13,7 +13,6 @@ namespace DiabetesAppFrontend
         public static MauiApp CreateMauiApp()
         {
             AppContext.SetSwitch("System.Reflection.NullabilityInfoContext.IsSupported", true);
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NMaF5cXmBCf0xwWmFZfVtgdl9FZVZQRGY/P1ZhSXxXd0dgWX5ac3FURmhVV0Y="); 
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()

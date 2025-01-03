@@ -2,6 +2,7 @@
 using DiabetesApp.Dto.BloodPressureDtos;
 using DiabetesApp.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace DiabetesApp.Controllers
 {
@@ -17,10 +18,16 @@ namespace DiabetesApp.Controllers
             _bloodPressureService = bloodPressureService;
         }
 
-        [HttpPost]
+        [HttpPost("create-pressure")]
         public async Task<IActionResult> CreateBloodPressureEntry([FromBody] CreateBloodPressureEntryDto dto)
         {
-            await _bloodPressureService.CreateBloodPressureEntry(dto);
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized("Nie jesteś zalogowany");
+            }
+            await _bloodPressureService.CreateBloodPressureEntry(dto, userId);
             return Ok();
         }
 
