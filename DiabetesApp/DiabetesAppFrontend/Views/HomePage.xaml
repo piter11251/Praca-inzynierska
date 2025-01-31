@@ -2,19 +2,65 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
-             xmlns:local="clr-namespace:DiabetesAppFrontend"
+             xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+             xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+            
              x:Class="DiabetesAppFrontend.Views.HomePage"
              Title="">
+
+
     <VerticalStackLayout Padding="20" Spacing="15">
-        <Label x:Name="WelcomeLabel" Text="Zalogowano, {user_name}" FontSize="24" HorizontalOptions="Center" />
-        <chart:SfCartesianChart x:Name="chart" >
+        <Label Text="{Binding UserName}" FontSize="24" HorizontalOptions="Center" />
+        <Label Text="{Binding ErrorMessage}" TextColor="Red" />
+
+        <buttons:SfSegmentedControl
+            SelectedIndex="{Binding SelectedChartIndex, Mode=TwoWay}"
+            HorizontalOptions="Center"
+            WidthRequest="200">
+            <buttons:SfSegmentedControl.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Cukier</x:String>
+                    <x:String>Ciśnienie</x:String>
+                </x:Array>
+            </buttons:SfSegmentedControl.ItemsSource>
+        </buttons:SfSegmentedControl>
+
+        <chart:SfCartesianChart
+            HeightRequest="300"
+            Series="{Binding ChartSeries}">
+
+            <chart:SfCartesianChart.ZoomPanBehavior>
+                <chart:ChartZoomPanBehavior
+                    EnablePinchZooming="True"
+                    EnableDirectionalZooming="True"
+                    ZoomMode="X"
+                    
+                    />
+            </chart:SfCartesianChart.ZoomPanBehavior>
+
             <chart:SfCartesianChart.XAxes>
-                <chart:CategoryAxis />
+                <chart:DateTimeAxis Minimum="{Binding ChartStartDate}" Maximum="{Binding ChartEndDate}" Interval="1" IntervalType="Days" AutoScrollingDelta="5" AutoScrollingDeltaType="Days">
+                    <chart:DateTimeAxis.LabelStyle>
+                        <chart:ChartAxisLabelStyle FontSize="14" TextColor="Black"/>
+                    </chart:DateTimeAxis.LabelStyle>
+                </chart:DateTimeAxis>
+                
             </chart:SfCartesianChart.XAxes>
 
             <chart:SfCartesianChart.YAxes>
-                <chart:NumericalAxis Minimum="40" Maximum="150" Interval="30"/>
+                <chart:NumericalAxis Minimum="40" Maximum="180" Interval="20">
+                    <chart:NumericalAxis.LabelStyle>
+                        <chart:ChartAxisLabelStyle FontSize="14" TextColor="Black"/>
+                    </chart:NumericalAxis.LabelStyle>
+                </chart:NumericalAxis>
             </chart:SfCartesianChart.YAxes>
+
         </chart:SfCartesianChart>
+
+
+        <ActivityIndicator
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="CenterAndExpand"/>
     </VerticalStackLayout>
 </ContentPage>

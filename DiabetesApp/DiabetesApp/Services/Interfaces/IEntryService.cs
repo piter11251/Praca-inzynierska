@@ -10,5 +10,6 @@ namespace DiabetesApp.Services.Interfaces
         Task DeleteEntry(int id);
         Task<List<GetEntryDto>> GetAllEntries();
         Task<GetEntryDto> GetEntryById(int id);
+        Task<List<GetEntryDto>> GetAllEntriesForUser(string userId);
     }
 }

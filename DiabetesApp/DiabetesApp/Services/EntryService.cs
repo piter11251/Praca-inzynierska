@@ -117,5 +117,24 @@ namespace DiabetesApp.Services
 
             return entryDto;
         }
+
+        public async Task<List<GetEntryDto>> GetAllEntriesForUser(string userId)
+        {
+            var entries = await _context.Entries
+                .Where(e => e.UserId == userId)
+                .ToListAsync();
+
+            if(entries.Count == 0)
+            {
+                return new List<GetEntryDto>();
+            }
+
+            return entries.Select(entry => new GetEntryDto
+            {
+                SugarValue = entry.SugarValue,
+                MealTime = entry.MealTime,
+                MealMarker = Enum.GetName(typeof(MealMarker), entry.MealMarker)
+            }).ToList();
+        }
     }
 }

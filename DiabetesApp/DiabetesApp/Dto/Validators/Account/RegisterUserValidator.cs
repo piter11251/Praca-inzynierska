@@ -1,5 +1,6 @@
 ﻿using DiabetesApp.DiabetesAppDbContext;
 using DiabetesApp.Dto.Account;
+using DiabetesApp.Entities;
 using FluentValidation;
 
 namespace DiabetesApp.Dto.Validators.Account
@@ -24,9 +25,9 @@ namespace DiabetesApp.Dto.Validators.Account
                 .IsInEnum();
 
             RuleFor(x => x.Email)
-                .Custom((value, context) =>
+                .Custom(async (value, context) =>
                 {
-                    var emailInUse = dbContext.Users.Any(u => u.Email == value);
+                    var emailInUse = dbContext.Set<User>().Any(u => u.Email == value);
                     if (emailInUse)
                     {
                         context.AddFailure("Email", "Ten email jest już w użyciu");

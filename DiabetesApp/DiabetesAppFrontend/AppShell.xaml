@@ -3,12 +3,69 @@
     x:Class="DiabetesAppFrontend.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:DiabetesAppFrontend"
-    xmlns:locals="clr-namespace:DiabetesAppFrontend.Views"
-    xmlns:models="clr-namespace:DiabetesAppFrontend.Models.Icons"
+    xmlns:views="clr-namespace:DiabetesAppFrontend.Views"
+    xmlns:icons="clr-namespace:DiabetesAppFrontend.Models.Icons"
     Shell.FlyoutBehavior="Flyout"
     Title="DiabetesAppFrontend">
 
+    <ShellContent
+        Route="LandingPage"
+        ContentTemplate="{DataTemplate views:LandingPage}"
+        Shell.NavBarIsVisible="False"/>
+
+    <FlyoutItem Title="Home">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                Glyph="{x:Static icons:Icons.Home}"
+                FontFamily="MaterialIcons"
+                Color="Black"
+                Size="24"/>
+        </FlyoutItem.Icon>
+        <ShellContent
+            Title="Home"
+            Route="HomePage"
+            ContentTemplate="{DataTemplate views:HomePage}"/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Sugar Entry">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                Glyph="{x:Static icons:Icons.Sugar}"
+                FontFamily="MaterialSymbols"
+                Color="Black"
+                Size="24"/>
+        </FlyoutItem.Icon>
+        <ShellContent
+            Title="Sugar"
+            Route="SugarEntryView"
+            ContentTemplate="{DataTemplate views:SugarEntryView}"/>
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Cisnienie">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                Glyph="{x:Static icons:Icons.BloodPressure}"
+                FontFamily="MaterialSymbols"
+                Color="Black"
+                Size="24"/>
+        </FlyoutItem.Icon>
+        <ShellContent
+            Title="BloodPressure"
+            Route="BloodPressurePage"
+            ContentTemplate="{DataTemplate views:BloodPressurePage}"/>
+    </FlyoutItem>
+
+    <MenuItem
+        Text="Wyloguj"
+        Clicked="OnLogoutClicked">
+        <MenuItem.IconImageSource>
+            <FontImageSource
+                Glyph="{x:Static icons:Icons.Logout}"
+                FontFamily="MaterialIcons"
+                Color="Black"
+                Size="24"/>
+        </MenuItem.IconImageSource>
+    </MenuItem>
     
 
 </Shell>

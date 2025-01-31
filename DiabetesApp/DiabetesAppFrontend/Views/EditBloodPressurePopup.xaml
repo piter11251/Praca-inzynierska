@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+    x:Class="DiabetesAppFrontend.Views.EditBloodPressurePopup">
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Label Text="Edycja cisnienia" FontSize="20" />
+        <Entry x:Name="StolicEntry" Placeholder="Wpisz cisnienie skurczowe"/>
+        <Entry x:Name="DiastolicEntry" Placeholder="Wpisz cisnienie rozskurczowe"/>
+        <DatePicker x:Name="MeasureDatePicker"/>
+        <TimePicker x:Name="MeasureTimePicker"/>
+
+        <HorizontalStackLayout HorizontalOptions="End" Spacing="10">
+            <Button Text="Anuluj" Clicked="Cancel_Clicked" />
+            <Button Text="Zapisz" Clicked="Save_Clicked" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</toolkit:Popup>

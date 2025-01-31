@@ -9,7 +9,7 @@ namespace DiabetesApp.DiabetesAppDbContext
         public DbSet<Entry> Entries { get; set; }
         public DbSet<BloodPressure> Pressures { get; set; }
         public DbSet<UserPreferences> UserPreferences { get; set; }
-        public DbSet<User> Users { get; set; }
+        //public DbSet<User> Users { get; set; }
 
         public DiabetesDbContext(DbContextOptions<DiabetesDbContext> options): base(options)
         {
@@ -29,10 +29,16 @@ namespace DiabetesApp.DiabetesAppDbContext
                 .WithOne(up => up.User)
                 .HasForeignKey<UserPreferences>(up => up.UserId);
 
-            modelBuilder.Entity<Entry>()
+            /*modelBuilder.Entity<Entry>()
                 .HasOne(e => e.User)
                 .WithMany(u => u.Entries)
-                .HasForeignKey(e => e.UserId);
+                .HasForeignKey(e => e.UserId);*/
+            modelBuilder.Entity<Entry>()
+                .HasKey(e => e.Id);
+
+            modelBuilder.Entity<Entry>()
+                .Property(e => e.Id)
+                .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<BloodPressure>()
                 .HasOne(bp => bp.User)

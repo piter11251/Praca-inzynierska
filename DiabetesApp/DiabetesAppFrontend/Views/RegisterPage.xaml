@@ -7,49 +7,28 @@
              Title="">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
-            <Label Text="Rejestracja" FontSize="24"  HorizontalOptions="Center" />
-            <Entry x:Name="EmailEntry" 
-                       Placeholder="Email" 
-                       Keyboard="Email"/>
-            <Label x:Name="EmailErrorLabel" Text="Red" IsVisible="False" />
+            <Label Text="Rejestracja" FontSize="24" HorizontalOptions="Center"/>
 
-            <Entry x:Name="PasswordEntry" 
-                       Placeholder="Haslo" 
-                       IsPassword="True" />
-            <Label x:Name="PasswordErrorLabel" TextColor="Red" IsVisible="False" />
+            <Entry Placeholder="Email" Text="{Binding Email}"/>
+            <Entry Placeholder="Hasło" IsPassword="True" Text="{Binding Password}"/>
+            <Entry Placeholder="Potwierdź hasło" IsPassword="True" Text="{Binding ConfirmPassword}"/>
 
-            <Entry x:Name="ConfirmPasswordEntry" 
-                       Placeholder="Potwierdz haslo" 
-                       IsPassword="True" />
-            <Label x:Name="ConfirmPasswordErrorLabel" TextColor="Red" IsVisible="False" />
+            <Entry Placeholder="Imię" Text="{Binding FirstName}"/>
+            <Entry Placeholder="Nazwisko" Text="{Binding LastName}"/>
 
-            <Entry x:Name="FirstNameEntry"
-                       Placeholder="Imie" />
-            <Label x:Name="FirstNameErrorLabel" TextColor="Red" IsVisible="False" />
+            <DatePicker Date="{Binding BirthDate}"/>
+            <Picker
+                Title="Płeć"
+                SelectedIndex="{Binding Gender}"
+                ItemsSource="{x:Static local:GenderEnum.Values}"/>
 
-            <Entry x:Name="LastNameEntry"
-                        Placeholder="Nazwisko" />
+            <Picker
+                Title="Typ cukrzycy"
+                SelectedIndex="{Binding DiabetesType}"
+                ItemsSource="{x:Static local:DiabetesTypeEnum.Values}"/>
 
-            <Label x:Name="LastNameErrorLabel" TextColor="Red" IsVisible="False" />
-
-            <DatePicker x:Name="BirthDatePicker"
-                            Format="yyyy-MM-dd"
-                            MaximumDate="{x:Static sys:DateTime.Now}" />
-            <Label x:Name="BirthDateErrorLabel" TextColor="Red" IsVisible="False" />
-
-            <Picker x:Name="GenderPicker"
-                        Title="Płeć"
-                        ItemsSource="{x:Static local:GenderEnum.Values}" />
-            <Label x:Name="GenderErrorLabel" TextColor="Red" IsVisible="False" />
-
-            <Picker x:Name="DiabetesTypePicker"
-                        Title="Typ cukrzycy"
-                        ItemsSource="{x:Static local:DiabetesTypeEnum.Values}" />
-            <Label x:Name="DiabetesTypeErrorLabel" TextColor="Red" IsVisible="False" />
-
-            <Button Text="Zarejestruj sie"
-                        Clicked="OnRegisterButtonClicked" />
-            <Label x:Name="GeneralErrorLabel" TextColor="Red" IsVisible="True" />
+            <Button Text="Zarejestruj" Command="{Binding RegisterCommand}"/>
+            <Label Text="{Binding ErrorMessage}" TextColor="Red"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

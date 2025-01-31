@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
@@ -86,6 +87,142 @@ namespace Demo.ApiClient
             {
                 var errorMessage = await response.Content.ReadAsStringAsync();
                 throw new Exception($"Nie udalo sie przeslac pomiaru: {errorMessage}");
+            }
+        }
+
+        public async Task<List<SugarEntry>> GetAllSugarEntries()
+        {
+            try
+            {
+                var token = await SecureStorage.GetAsync("auth_token");
+                if (string.IsNullOrEmpty(token))
+                {
+                    return new List<SugarEntry>();
+                }
+
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                var response = await _httpClient.GetAsync("api/sugar-entries");
+                response.EnsureSuccessStatusCode();
+
+                var json = await response.Content.ReadAsStringAsync();
+                var result = JsonSerializer.Deserialize<List<SugarEntry>>(json, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+                return result ?? new List<SugarEntry>();
+
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<SugarEntry>();
+            }
+        }
+        public async Task<List<BloodPressureDto>> GetBloodPressureEntries()
+        {
+            try
+            {
+                var token = await SecureStorage.GetAsync("auth_token");
+                if (string.IsNullOrEmpty(token))
+                {
+                    return new List<BloodPressureDto>();
+                }
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.GetAsync("api/pressure-entries");
+                response.EnsureSuccessStatusCode();
+
+                var json = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"[DEBUG] Surowy json z API: {json}");
+                var result = JsonSerializer.Deserialize<List<BloodPressureDto>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                if(result == null)
+                {
+                    Console.WriteLine("[ERROR] Deserializacja zwrocila null");
+                    return new List<BloodPressureDto>();
+                }
+                foreach(var bp in result)
+                {
+                    Console.WriteLine($"[DEBUG] Otrzymany wpis: {bp.MeasurementDate}, {bp.StolicPressure}/{bp.DiastolicPressure}");
+                }
+
+                return result;
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"[ERROR] {ex.Message}");
+                return new List<BloodPressureDto>();
+            }
+        }
+
+        public async Task<bool> ModifyEntryAsync(SugarEntry entry)
+        {
+            try
+            {
+                var token = await SecureStorage.GetAsync("auth_token");
+                if (string.IsNullOrEmpty(token))
+                {
+                    return false;
+                }
+
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                var dto = new ModifyEntryDto
+                {
+                    SugarValue = entry.SugarValue,
+                    MealTime = entry.MealTime,
+                    MealMarker = entry.MealMarker
+                };
+
+                var json = JsonSerializer.Serialize(dto);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var request = new HttpRequestMessage(new HttpMethod("PATCH"), $"api/sugar-entries/{entry.Id}")
+                {
+                    Content = content
+                };
+                var response = await _httpClient.SendAsync(request);
+                return response.IsSuccessStatusCode;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        public async Task<bool> ModifyBloodPressureAsync(BloodPressureEntry entry)
+        {
+            try
+            {
+                var token = await SecureStorage.GetAsync("auth_token");
+                if (string.IsNullOrEmpty(token))
+                {
+                    return false;
+                }
+
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                var dto = new BloodPressureEntry
+                {
+                    StolicValue = entry.StolicValue,
+                    DiastolicValue = entry.DiastolicValue,
+                    MeasureTime = entry.MeasureTime
+                };
+
+                var json = JsonSerializer.Serialize(dto);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var request = new HttpRequestMessage(new HttpMethod("PATCH"), $"api/pressure-entries/{entry.Id}")
+                {
+                    Content = content
+                };
+                var response = await _httpClient.SendAsync(request);
+                return response.IsSuccessStatusCode;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
             }
         }
 

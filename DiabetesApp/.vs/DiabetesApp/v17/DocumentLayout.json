@@ -3,68 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{546FA4C0-555C-4B90-A8F3-4403348C8AB4}|DiabetesAppFrontend\\DiabetesAppFrontend.csproj|c:\\users\\admin\\documents\\github\\praca-inzynierska\\diabetesapp\\diabetesappfrontend\\views\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{546FA4C0-555C-4B90-A8F3-4403348C8AB4}|DiabetesAppFrontend\\DiabetesAppFrontend.csproj|solutionrelative:diabetesappfrontend\\views\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{546FA4C0-555C-4B90-A8F3-4403348C8AB4}|DiabetesAppFrontend\\DiabetesAppFrontend.csproj|c:\\users\\admin\\documents\\github\\praca-inzynierska\\diabetesapp\\diabetesappfrontend\\views\\sugarentryflyoutpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{546FA4C0-555C-4B90-A8F3-4403348C8AB4}|DiabetesAppFrontend\\DiabetesAppFrontend.csproj|solutionrelative:diabetesappfrontend\\views\\sugarentryflyoutpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{546FA4C0-555C-4B90-A8F3-4403348C8AB4}|DiabetesAppFrontend\\DiabetesAppFrontend.csproj|c:\\users\\admin\\documents\\github\\praca-inzynierska\\diabetesapp\\diabetesappfrontend\\views\\homepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{546FA4C0-555C-4B90-A8F3-4403348C8AB4}|DiabetesAppFrontend\\DiabetesAppFrontend.csproj|solutionrelative:diabetesappfrontend\\views\\homepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{546FA4C0-555C-4B90-A8F3-4403348C8AB4}|DiabetesAppFrontend\\DiabetesAppFrontend.csproj|c:\\users\\admin\\documents\\github\\praca-inzynierska\\diabetesapp\\diabetesappfrontend\\viewmodels\\homeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{546FA4C0-555C-4B90-A8F3-4403348C8AB4}|DiabetesAppFrontend\\DiabetesAppFrontend.csproj|solutionrelative:diabetesappfrontend\\viewmodels\\homeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0497921-C23F-4AE8-A3DA-6A867E83B535}|Demo.ApiClient\\Demo.ApiClient.csproj|c:\\users\\admin\\documents\\github\\praca-inzynierska\\diabetesapp\\demo.apiclient\\demoapiclientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0497921-C23F-4AE8-A3DA-6A867E83B535}|Demo.ApiClient\\Demo.ApiClient.csproj|solutionrelative:demo.apiclient\\demoapiclientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2340871B-D56E-4377-AA5B-4088C41079A1}|DiabetesApp\\DiabetesApp.csproj|c:\\users\\admin\\documents\\github\\praca-inzynierska\\diabetesapp\\diabetesapp\\services\\bloodpressureservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2340871B-D56E-4377-AA5B-4088C41079A1}|DiabetesApp\\DiabetesApp.csproj|solutionrelative:diabetesapp\\services\\bloodpressureservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2340871B-D56E-4377-AA5B-4088C41079A1}|DiabetesApp\\DiabetesApp.csproj|c:\\users\\admin\\documents\\github\\praca-inzynierska\\diabetesapp\\diabetesapp\\services\\entryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2340871B-D56E-4377-AA5B-4088C41079A1}|DiabetesApp\\DiabetesApp.csproj|solutionrelative:diabetesapp\\services\\entryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2340871B-D56E-4377-AA5B-4088C41079A1}|DiabetesApp\\DiabetesApp.csproj|c:\\users\\admin\\documents\\github\\praca-inzynierska\\diabetesapp\\diabetesapp\\controllers\\entrycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2340871B-D56E-4377-AA5B-4088C41079A1}|DiabetesApp\\DiabetesApp.csproj|solutionrelative:diabetesapp\\controllers\\entrycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2340871B-D56E-4377-AA5B-4088C41079A1}|DiabetesApp\\DiabetesApp.csproj|c:\\users\\admin\\documents\\github\\praca-inzynierska\\diabetesapp\\diabetesapp\\services\\interfaces\\ibloodpressureservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2340871B-D56E-4377-AA5B-4088C41079A1}|DiabetesApp\\DiabetesApp.csproj|solutionrelative:diabetesapp\\services\\interfaces\\ibloodpressureservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2340871B-D56E-4377-AA5B-4088C41079A1}|DiabetesApp\\DiabetesApp.csproj|c:\\users\\admin\\documents\\github\\praca-inzynierska\\diabetesapp\\diabetesapp\\services\\interfaces\\ientryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2340871B-D56E-4377-AA5B-4088C41079A1}|DiabetesApp\\DiabetesApp.csproj|solutionrelative:diabetesapp\\services\\interfaces\\ientryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2340871B-D56E-4377-AA5B-4088C41079A1}|DiabetesApp\\DiabetesApp.csproj|c:\\users\\admin\\documents\\github\\praca-inzynierska\\diabetesapp\\diabetesapp\\controllers\\bloodpressurecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2340871B-D56E-4377-AA5B-4088C41079A1}|DiabetesApp\\DiabetesApp.csproj|solutionrelative:diabetesapp\\controllers\\bloodpressurecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2340871B-D56E-4377-AA5B-4088C41079A1}|DiabetesApp\\DiabetesApp.csproj|c:\\users\\admin\\documents\\github\\praca-inzynierska\\diabetesapp\\diabetesapp\\dto\\entrydtos\\createentrydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2340871B-D56E-4377-AA5B-4088C41079A1}|DiabetesApp\\DiabetesApp.csproj|solutionrelative:diabetesapp\\dto\\entrydtos\\createentrydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{546FA4C0-555C-4B90-A8F3-4403348C8AB4}|DiabetesAppFrontend\\DiabetesAppFrontend.csproj|c:\\users\\admin\\documents\\github\\praca-inzynierska\\diabetesapp\\diabetesappfrontend\\views\\sugarentryview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{546FA4C0-555C-4B90-A8F3-4403348C8AB4}|DiabetesAppFrontend\\DiabetesAppFrontend.csproj|solutionrelative:diabetesappfrontend\\views\\sugarentryview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{546FA4C0-555C-4B90-A8F3-4403348C8AB4}|DiabetesAppFrontend\\DiabetesAppFrontend.csproj|c:\\users\\admin\\documents\\github\\praca-inzynierska\\diabetesapp\\diabetesappfrontend\\views\\sugarentryview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{546FA4C0-555C-4B90-A8F3-4403348C8AB4}|DiabetesAppFrontend\\DiabetesAppFrontend.csproj|solutionrelative:diabetesappfrontend\\views\\sugarentryview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C0497921-C23F-4AE8-A3DA-6A867E83B535}|Demo.ApiClient\\Demo.ApiClient.csproj|c:\\users\\admin\\documents\\github\\praca-inzynierska\\diabetesapp\\demo.apiclient\\models\\apimodels\\bloodpressuredto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0497921-C23F-4AE8-A3DA-6A867E83B535}|Demo.ApiClient\\Demo.ApiClient.csproj|solutionrelative:demo.apiclient\\models\\apimodels\\bloodpressuredto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{546FA4C0-555C-4B90-A8F3-4403348C8AB4}|DiabetesAppFrontend\\DiabetesAppFrontend.csproj|c:\\users\\admin\\documents\\github\\praca-inzynierska\\diabetesapp\\diabetesappfrontend\\views\\bloodpressurepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{546FA4C0-555C-4B90-A8F3-4403348C8AB4}|DiabetesAppFrontend\\DiabetesAppFrontend.csproj|solutionrelative:diabetesappfrontend\\views\\bloodpressurepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{546FA4C0-555C-4B90-A8F3-4403348C8AB4}|DiabetesAppFrontend\\DiabetesAppFrontend.csproj|c:\\users\\admin\\documents\\github\\praca-inzynierska\\diabetesapp\\diabetesappfrontend\\views\\bloodpressurepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{546FA4C0-555C-4B90-A8F3-4403348C8AB4}|DiabetesAppFrontend\\DiabetesAppFrontend.csproj|solutionrelative:diabetesappfrontend\\views\\bloodpressurepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -74,215 +22,52 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "SugarEntryFlyoutPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesAppFrontend\\Views\\SugarEntryFlyoutPage.xaml.cs",
-              "RelativeDocumentMoniker": "DiabetesAppFrontend\\Views\\SugarEntryFlyoutPage.xaml.cs",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesAppFrontend\\Views\\SugarEntryFlyoutPage.xaml.cs",
-              "RelativeToolTip": "DiabetesAppFrontend\\Views\\SugarEntryFlyoutPage.xaml.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAxwCAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T20:43:53.379Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "LoginPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesAppFrontend\\Views\\LoginPage.xaml.cs",
-              "RelativeDocumentMoniker": "DiabetesAppFrontend\\Views\\LoginPage.xaml.cs",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesAppFrontend\\Views\\LoginPage.xaml.cs",
-              "RelativeToolTip": "DiabetesAppFrontend\\Views\\LoginPage.xaml.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwB0AAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T20:34:18.119Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "HomePage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesAppFrontend\\Views\\HomePage.xaml.cs",
-              "RelativeDocumentMoniker": "DiabetesAppFrontend\\Views\\HomePage.xaml.cs",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesAppFrontend\\Views\\HomePage.xaml.cs",
-              "RelativeToolTip": "DiabetesAppFrontend\\Views\\HomePage.xaml.cs",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAmwGwAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T20:23:23.455Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IEntryService.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesApp\\Services\\Interfaces\\IEntryService.cs",
-              "RelativeDocumentMoniker": "DiabetesApp\\Services\\Interfaces\\IEntryService.cs",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesApp\\Services\\Interfaces\\IEntryService.cs",
-              "RelativeToolTip": "DiabetesApp\\Services\\Interfaces\\IEntryService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T20:17:39.076Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IBloodPressureService.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesApp\\Services\\Interfaces\\IBloodPressureService.cs",
-              "RelativeDocumentMoniker": "DiabetesApp\\Services\\Interfaces\\IBloodPressureService.cs",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesApp\\Services\\Interfaces\\IBloodPressureService.cs",
-              "RelativeToolTip": "DiabetesApp\\Services\\Interfaces\\IBloodPressureService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T20:17:17.798Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "EntryController.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesApp\\Controllers\\EntryController.cs",
-              "RelativeDocumentMoniker": "DiabetesApp\\Controllers\\EntryController.cs",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesApp\\Controllers\\EntryController.cs",
-              "RelativeToolTip": "DiabetesApp\\Controllers\\EntryController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB0AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T20:14:30.076Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "CreateEntryDto.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesApp\\Dto\\EntryDtos\\CreateEntryDto.cs",
-              "RelativeDocumentMoniker": "DiabetesApp\\Dto\\EntryDtos\\CreateEntryDto.cs",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesApp\\Dto\\EntryDtos\\CreateEntryDto.cs",
-              "RelativeToolTip": "DiabetesApp\\Dto\\EntryDtos\\CreateEntryDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T20:14:13.794Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "EntryService.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesApp\\Services\\EntryService.cs",
-              "RelativeDocumentMoniker": "DiabetesApp\\Services\\EntryService.cs",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesApp\\Services\\EntryService.cs",
-              "RelativeToolTip": "DiabetesApp\\Services\\EntryService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T20:15:02.036Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BloodPressureService.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesApp\\Services\\BloodPressureService.cs",
-              "RelativeDocumentMoniker": "DiabetesApp\\Services\\BloodPressureService.cs",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesApp\\Services\\BloodPressureService.cs",
-              "RelativeToolTip": "DiabetesApp\\Services\\BloodPressureService.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T20:11:50.566Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "SugarEntryView.xaml",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesAppFrontend\\Views\\SugarEntryView.xaml",
-              "RelativeDocumentMoniker": "DiabetesAppFrontend\\Views\\SugarEntryView.xaml",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesAppFrontend\\Views\\SugarEntryView.xaml",
-              "RelativeToolTip": "DiabetesAppFrontend\\Views\\SugarEntryView.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-03T18:02:22.392Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "SugarEntryView.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesAppFrontend\\Views\\SugarEntryView.xaml.cs",
-              "RelativeDocumentMoniker": "DiabetesAppFrontend\\Views\\SugarEntryView.xaml.cs",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesAppFrontend\\Views\\SugarEntryView.xaml.cs",
-              "RelativeToolTip": "DiabetesAppFrontend\\Views\\SugarEntryView.xaml.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAIwEYAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T18:02:02.071Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "BloodPressureDto.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\Demo.ApiClient\\Models\\ApiModels\\BloodPressureDto.cs",
-              "RelativeDocumentMoniker": "Demo.ApiClient\\Models\\ApiModels\\BloodPressureDto.cs",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\Demo.ApiClient\\Models\\ApiModels\\BloodPressureDto.cs",
-              "RelativeToolTip": "Demo.ApiClient\\Models\\ApiModels\\BloodPressureDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAoAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T15:48:34.808Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "BloodPressureController.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesApp\\Controllers\\BloodPressureController.cs",
-              "RelativeDocumentMoniker": "DiabetesApp\\Controllers\\BloodPressureController.cs",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesApp\\Controllers\\BloodPressureController.cs",
-              "RelativeToolTip": "DiabetesApp\\Controllers\\BloodPressureController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB0AAABOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T15:46:05.039Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "DemoApiClientService.cs",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\Demo.ApiClient\\DemoApiClientService.cs",
               "RelativeDocumentMoniker": "Demo.ApiClient\\DemoApiClientService.cs",
               "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\Demo.ApiClient\\DemoApiClientService.cs",
               "RelativeToolTip": "Demo.ApiClient\\DemoApiClientService.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAnwBgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAiwJUAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T15:44:55.551Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-31T11:33:54.626Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "BloodPressurePage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesAppFrontend\\Views\\BloodPressurePage.xaml.cs",
-              "RelativeDocumentMoniker": "DiabetesAppFrontend\\Views\\BloodPressurePage.xaml.cs",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesAppFrontend\\Views\\BloodPressurePage.xaml.cs",
-              "RelativeToolTip": "DiabetesAppFrontend\\Views\\BloodPressurePage.xaml.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAAB8AAAAqAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "BloodPressureDto.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\Demo.ApiClient\\Models\\ApiModels\\BloodPressureDto.cs",
+              "RelativeDocumentMoniker": "Demo.ApiClient\\Models\\ApiModels\\BloodPressureDto.cs",
+              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\Demo.ApiClient\\Models\\ApiModels\\BloodPressureDto.cs",
+              "RelativeToolTip": "Demo.ApiClient\\Models\\ApiModels\\BloodPressureDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-02T21:16:44.727Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-31T11:32:26.708Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "BloodPressurePage.xaml",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesAppFrontend\\Views\\BloodPressurePage.xaml",
-              "RelativeDocumentMoniker": "DiabetesAppFrontend\\Views\\BloodPressurePage.xaml",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesAppFrontend\\Views\\BloodPressurePage.xaml",
-              "RelativeToolTip": "DiabetesAppFrontend\\Views\\BloodPressurePage.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-02T21:04:51.858Z",
+              "DocumentIndex": 0,
+              "Title": "HomeViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesAppFrontend\\ViewModels\\HomeViewModel.cs",
+              "RelativeDocumentMoniker": "DiabetesAppFrontend\\ViewModels\\HomeViewModel.cs",
+              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Praca-inzynierska\\DiabetesApp\\DiabetesAppFrontend\\ViewModels\\HomeViewModel.cs",
+              "RelativeToolTip": "DiabetesAppFrontend\\ViewModels\\HomeViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T17:59:03.832Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         }

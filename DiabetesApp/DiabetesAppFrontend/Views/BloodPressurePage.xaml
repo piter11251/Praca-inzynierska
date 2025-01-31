@@ -2,16 +2,39 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             xmlns:vm="clr-namespace:DiabetesAppFrontend.ViewModels"
              x:Class="DiabetesAppFrontend.Views.BloodPressurePage"
              Title="BloodPressurePage">
+
+    
+    
     <VerticalStackLayout Padding="20" Spacing="15">
-        <Entry x:Name="StolicPressure" Keyboard="Numeric" Placeholder="Cisnienie skurczowe" />
-        <Entry x:Name="DiastolicPressure" Keyboard="Numeric" Placeholder="Cisnienie rozkurczowe" />
-        <Entry x:Name="Pulse" Keyboard="Numeric" Placeholder="Puls" />
-        <Label Text="Nieregularny puls" FontSize="16" VerticalTextAlignment="Center"/>
-        <CheckBox x:Name="IrregularPulseCheckbox" CheckedChanged="OnIrregularPulseChecked" IsChecked="false" />
-        <DatePicker x:Name="EntryDate" Format="yyyy-MM-dd" MaximumDate="{x:Static sys:DateTime.Now}" />
-        <TimePicker x:Name="SelectedTime" Format="HH:mm" />
-        <Button Text="Przeslij pomiar" Clicked="OnSendEntryClicked" />
+        <Entry
+            Placeholder="Ciśnienie skurczowe"
+            Text="{Binding StolicPressure}"
+            Keyboard="Numeric"/>
+
+        <Entry
+            Placeholder="Ciśnienie rozkurczowe"
+            Text="{Binding DiastolicPressure}"
+            Keyboard="Numeric"/>
+
+        <Entry
+            Placeholder="Puls"
+            Text="{Binding Pulse}"
+            Keyboard="Numeric"/>
+
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Nieregularny puls?" VerticalTextAlignment="Center"/>
+            <CheckBox IsChecked="{Binding HasIrregularPulse}" />
+        </HorizontalStackLayout>
+
+        <DatePicker Date="{Binding Date}"/>
+        <TimePicker Time="{Binding Time}"/>
+
+        <Button Text="Prześlij pomiar"
+                Command="{Binding SendEntryCommand}"/>
+
+        <Label Text="{Binding ErrorMessage}" TextColor="Red" />
     </VerticalStackLayout>
 </ContentPage>

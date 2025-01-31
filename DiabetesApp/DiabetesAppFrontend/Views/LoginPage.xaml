@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:DiabetesAppFrontend.ViewModels"
              x:Class="DiabetesAppFrontend.Views.LoginPage"
              Title="">
     <VerticalStackLayout Padding="20" Spacing="15">
         <Label Text="Logowanie" FontSize="24" HorizontalOptions="Center"/>
-        <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email"/>
-        <Entry x:Name="PasswordEntry" Placeholder="Haslo" IsPassword="True"/>
-        <Button Text="Zaloguj" Clicked="OnLoginButtonClicked"/>
+        <Entry Placeholder="Email" Keyboard="Email" Text="{Binding Email}"/>
+        <Entry Placeholder="Haslo" IsPassword="True" Text="{Binding Password}"/>
+        <Button Text="Zaloguj" Command="{Binding LoginCommand}"/>
         <Label Text="Nie posiadasz jeszcze konta? Zarejestruj sie."
                FontSize="12"
                FontAttributes="Italic"
                HorizontalOptions="Center"
                VerticalOptions="End">
             <Label.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnRegisterLinkTapped"/>
+                <TapGestureRecognizer Command="{Binding GoToRegisterCommand}"/>
             </Label.GestureRecognizers>
         </Label>
-        <Label x:Name="ErrorMessageLabel" TextColor="Red" IsVisible="False"/>
+        <Label Text="{Binding ErrorMessage}" TextColor="Red" IsVisible="{Binding ErrorMessage.Length, Converter={StaticResource GreaterThanZeroConverter}}"/>
     </VerticalStackLayout>
 </ContentPage>

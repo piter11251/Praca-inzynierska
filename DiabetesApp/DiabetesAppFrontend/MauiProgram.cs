@@ -5,6 +5,9 @@ using DiabetesAppFrontend.Views;
 using Microcharts.Maui;
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
+using CommunityToolkit.Maui;
+using DiabetesAppFrontend.ViewModels;
+using DiabetesAppFrontend.Services;
 
 namespace DiabetesAppFrontend
 {
@@ -16,6 +19,7 @@ namespace DiabetesAppFrontend
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -33,6 +37,23 @@ namespace DiabetesAppFrontend
                 await client.InitializeAuthTokenAsync();
                 return client;
             });
+            builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<LoginViewModel>();
+
+            builder.Services.AddTransient<RegisterPage>();
+            builder.Services.AddTransient<RegisterViewModel>();
+
+            builder.Services.AddTransient<HomePage>();
+            builder.Services.AddTransient<HomeViewModel>();
+
+            builder.Services.AddTransient<SugarEntryView>();
+            builder.Services.AddTransient<SugarEntryViewModel>();
+
+            builder.Services.AddTransient<BloodPressurePage>();
+            builder.Services.AddTransient<BloodPressureViewModel>();
+
+            builder.Services.AddTransient<LandingPage>();
+            builder.Services.AddTransient<LandingViewModel>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

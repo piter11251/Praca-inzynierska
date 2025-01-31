@@ -7,22 +7,25 @@ namespace DiabetesAppFrontend
     public partial class App : Application
     {
         private readonly DemoApiClientService _apiService;
-        public App(DemoApiClientService apiService)
+        public App()
         {
             InitializeComponent();
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzY1NDMxMUAzMjM4MmUzMDJlMzBESVVaSnkrUkoycDI1T3RGMWRiUWZzS3NXeThhb0JBb0pmZHR5ajhzcVd3PQ==");
-            _apiService = apiService;
-            MainPage = DetermineMainPage();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzY5NDg4OEAzMjM4MmUzMDJlMzBQeHNQSk12V0JIaDZEWitHZ2gzQ0l3cEVKei9yUzV5Z09OTmpIWWZta3ljPQ==");
+            MainPage = new AppShell();
         }
 
-        private Page DetermineMainPage()
+        protected override void OnStart()
         {
+            base.OnStart();
             var token = SecureStorage.GetAsync("auth_token").Result;
             if(!string.IsNullOrEmpty(token))
             {
-                return new SugarEntryFlyoutPage(_apiService);
+                Shell.Current.GoToAsync("//HomePage");
             }
-            return new NavigationPage(new LandingPage(_apiService));
+            else
+            {
+                Shell.Current.GoToAsync("//LandingPage");
+            }
         }
     }
 }
