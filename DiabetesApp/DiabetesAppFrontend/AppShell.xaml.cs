@@ -11,7 +11,8 @@ namespace DiabetesAppFrontend
             InitializeComponent();
             Routing.RegisterRoute("LoginPage", typeof(LoginPage));
             Routing.RegisterRoute("RegisterPage", typeof(RegisterPage));
-            
+            Routing.RegisterRoute(nameof(EditSugarEntryPage), typeof(EditSugarEntryPage));
+            Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
         }
 
        private async void OnLogoutClicked(object sender, EventArgs e)

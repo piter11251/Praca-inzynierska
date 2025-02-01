@@ -46,11 +46,18 @@ namespace DiabetesApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllBloodPressureEntries()
+        public async Task<IActionResult> GetAllBloodPressureEntries([FromQuery] int days = 7)
         {
-            var list = await _bloodPressureService.GetAllBloodPressureEntries();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized("Brak identyfikatora uzytkownika w tokenie");
+            }
+            var list = await _bloodPressureService.GetAllBloodPressureEntries(userId, days);
             return Ok(list);
         }
+
+        
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBloodPressureEntryById([FromRoute] int id)

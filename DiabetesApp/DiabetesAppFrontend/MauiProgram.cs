@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
 using CommunityToolkit.Maui;
 using DiabetesAppFrontend.ViewModels;
-using DiabetesAppFrontend.Services;
+
 
 namespace DiabetesAppFrontend
 {
@@ -54,6 +54,12 @@ namespace DiabetesAppFrontend
 
             builder.Services.AddTransient<LandingPage>();
             builder.Services.AddTransient<LandingViewModel>();
+
+            builder.Services.AddTransient<EditSugarEntryViewModel>();
+            builder.Services.AddTransient<EditSugarEntryPage>();
+    
+            builder.Services.AddTransient<SettingsPageViewModel>();
+            builder.Services.AddTransient<SettingsPage>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

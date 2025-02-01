@@ -47,14 +47,14 @@ namespace DiabetesApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllEntries()
+        public async Task<IActionResult> GetAllEntries([FromQuery] int days = 7)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userId))
             {
                 return Unauthorized("Brak identyfikatora uzytkownika w tokenie");
             }
-            var entries = await _entryService.GetAllEntriesForUser(userId);
+            var entries = await _entryService.GetAllEntriesForUser(userId, days);
             return Ok(entries);
         }
 

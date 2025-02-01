@@ -65,14 +65,19 @@ namespace DiabetesApp.Services
             
         }
 
-        public async Task<List<GetBloodPressureDto>> GetAllBloodPressureEntries()
+        public async Task<List<GetBloodPressureDto>> GetAllBloodPressureEntries(string userId, int days)
         {
-            var entries = await _context.Pressures.ToListAsync();
-            var newEntries = new List<GetBloodPressureDto>();
-            if(entries == null)
+            var dateLimit = DateTime.Now.AddDays(-days);
+            var entries = await _context.Pressures
+                .Where(p => p.UserId == userId && p.MeasureDate >= dateLimit)
+                .ToListAsync();
+
+            if(entries.Count == 0)
             {
-                throw new NotFoundException("Nie ma zadnych pomiarów");
+                return new List<GetBloodPressureDto>();
             }
+
+            var newEntries = new List<GetBloodPressureDto>();
 
             foreach(var entry in entries)
             {

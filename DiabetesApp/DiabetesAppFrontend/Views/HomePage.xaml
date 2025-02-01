@@ -12,11 +12,12 @@
     <VerticalStackLayout Padding="20" Spacing="15">
         <Label Text="{Binding UserName}" FontSize="24" HorizontalOptions="Center" />
         <Label Text="{Binding ErrorMessage}" TextColor="Red" />
+        
 
         <buttons:SfSegmentedControl
             SelectedIndex="{Binding SelectedChartIndex, Mode=TwoWay}"
             HorizontalOptions="Center"
-            WidthRequest="200">
+            >
             <buttons:SfSegmentedControl.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>Cukier</x:String>
@@ -29,17 +30,10 @@
             HeightRequest="300"
             Series="{Binding ChartSeries}">
 
-            <chart:SfCartesianChart.ZoomPanBehavior>
-                <chart:ChartZoomPanBehavior
-                    EnablePinchZooming="True"
-                    EnableDirectionalZooming="True"
-                    ZoomMode="X"
-                    
-                    />
-            </chart:SfCartesianChart.ZoomPanBehavior>
+            
 
             <chart:SfCartesianChart.XAxes>
-                <chart:DateTimeAxis Minimum="{Binding ChartStartDate}" Maximum="{Binding ChartEndDate}" Interval="1" IntervalType="Days" AutoScrollingDelta="5" AutoScrollingDeltaType="Days">
+                <chart:DateTimeAxis Minimum="{Binding ChartStartDate}" Maximum="{Binding ChartEndDate}" Interval="{Binding ChartInterval}" IntervalType="Days">
                     <chart:DateTimeAxis.LabelStyle>
                         <chart:ChartAxisLabelStyle FontSize="14" TextColor="Black"/>
                     </chart:DateTimeAxis.LabelStyle>
@@ -55,7 +49,22 @@
                 </chart:NumericalAxis>
             </chart:SfCartesianChart.YAxes>
 
+
         </chart:SfCartesianChart>
+
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+
+            <Label Text="Zakres dni:"
+                   VerticalOptions="Center"
+                   FontSize="16"/>
+
+            <Picker Title="Wybierz dni"
+                ItemsSource="{Binding DaysOptions}"
+                SelectedItem="{Binding SelectedDays}"
+                HorizontalOptions="CenterAndExpand"/>
+        </HorizontalStackLayout>
+        
+        
 
 
         <ActivityIndicator

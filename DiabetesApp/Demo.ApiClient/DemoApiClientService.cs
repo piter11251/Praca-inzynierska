@@ -90,7 +90,7 @@ namespace Demo.ApiClient
             }
         }
 
-        public async Task<List<SugarEntry>> GetAllSugarEntries()
+        public async Task<List<SugarEntry>> GetAllSugarEntries(int days)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace Demo.ApiClient
                 }
 
                 _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                var response = await _httpClient.GetAsync("api/sugar-entries");
+                var response = await _httpClient.GetAsync($"api/sugar-entries?days={days}");
                 response.EnsureSuccessStatusCode();
 
                 var json = await response.Content.ReadAsStringAsync();
@@ -120,7 +120,7 @@ namespace Demo.ApiClient
                 return new List<SugarEntry>();
             }
         }
-        public async Task<List<BloodPressureDto>> GetBloodPressureEntries()
+        public async Task<List<BloodPressureDto>> GetBloodPressureEntries(int days)
         {
             try
             {
@@ -131,7 +131,7 @@ namespace Demo.ApiClient
                 }
                 _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-                var response = await _httpClient.GetAsync("api/pressure-entries");
+                var response = await _httpClient.GetAsync($"api/pressure-entries?days={days}");
                 response.EnsureSuccessStatusCode();
 
                 var json = await response.Content.ReadAsStringAsync();

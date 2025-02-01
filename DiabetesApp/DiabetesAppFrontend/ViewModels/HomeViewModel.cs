@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Demo.ApiClient;
 using Demo.ApiClient.Models.ApiModels;
+using DiabetesAppFrontend.Views;
 using IntelliJ.Lang.Annotations;
 using Syncfusion.Maui.Charts;
 using System;
@@ -25,6 +26,9 @@ namespace DiabetesAppFrontend.ViewModels
         private bool isBusy;
 
         [ObservableProperty]
+        private double chartInterval = 1;
+
+        [ObservableProperty]
         private DateTime chartStartDate = DateTime.Now.AddDays(-7);
 
         [ObservableProperty]
@@ -38,6 +42,11 @@ namespace DiabetesAppFrontend.ViewModels
 
         [ObservableProperty]
         private ChartSeriesCollection chartSeries = new ChartSeriesCollection();
+
+        [ObservableProperty]
+        private int selectedDays;
+
+        public List<int> DaysOptions { get; } = new List<int>() { 7, 14, 30 };
 
         private ObservableCollection<SugarEntry> SugarEntries { get; } = new();
 
@@ -56,7 +65,21 @@ namespace DiabetesAppFrontend.ViewModels
         {
             _apiService = apiService;
             SelectedChartIndex = 0;
+            SelectedDays = 7;
+            ChartInterval = Math.Ceiling((double)SelectedDays / 7.0);
             _ = LoadSugarChartAsync();
+        }
+
+        partial void OnSelectedDaysChanged(int oldValue, int newValue)
+        {
+            if (IsBusy) return;
+
+            ChartInterval = Math.Ceiling((double)newValue / 7.0);
+
+            if (SelectedChartIndex == 0)
+                _ = LoadSugarChartAsync();
+            else
+                _ = LoadBloodPressureChartAsync();
         }
 
         partial void OnSelectedChartIndexChanged(int value)
@@ -85,6 +108,11 @@ namespace DiabetesAppFrontend.ViewModels
 
             try
             {
+                if (_sugarBehavior != null) _sugarBehavior.SelectionChanged -= OnSelectionChanged;
+
+                SugarEntries.Clear();
+                ChartSeries.Clear();
+
                 var token = await SecureStorage.GetAsync("auth_token");
                 if (!string.IsNullOrEmpty(token))
                 {
@@ -92,24 +120,15 @@ namespace DiabetesAppFrontend.ViewModels
                     var givenName = jwt.Claims.FirstOrDefault(c => c.Type == "given_name")?.Value;
                     UserName = !string.IsNullOrEmpty(givenName) ? $"Zalogowano {givenName}" : "Zalogowano (brak imienia)";
                 }
-                var sugarList = await _apiService.GetAllSugarEntries();
+                var sugarList = await _apiService.GetAllSugarEntries(SelectedDays);
+                ChartStartDate = DateTime.Now.AddDays(-SelectedDays);
+                ChartEndDate = DateTime.Now;
                 
-                SugarEntries.Clear();
-                if (sugarList != null)
+                foreach(var s in sugarList)
                 {
-                    ChartStartDate = DateTime.Now.AddDays(-7);
-                    ChartEndDate = sugarList.Max(s => s.MealTime).AddDays(1);
-
-                    var lastWeekEntries = sugarList
-                        .Where(s => s.MealTime >= ChartStartDate && s.MealTime <= ChartEndDate)
-                        .ToList();
-                    foreach (var s in lastWeekEntries)
-                    {
-                        Console.WriteLine($"[DEBUG] Cukier: {s.SugarValue}, Czas: {s.MealTime}");
-                        SugarEntries.Add(s);
-                    }
-                    Console.WriteLine($"[DEBUG] Liczba pomiarów cukru: {SugarEntries.Count}");
+                    SugarEntries.Add(s);
                 }
+
 
                 ChartSeries.Clear();
                 _sugarBehavior = new DataPointSelectionBehavior { Type = ChartSelectionType.Single };
@@ -121,6 +140,7 @@ namespace DiabetesAppFrontend.ViewModels
                     XBindingPath = nameof(SugarEntry.MealTime),
                     YBindingPath = nameof(SugarEntry.SugarValue),
                     Label = "Cukier",
+                    StrokeWidth = 1,
                     MarkerSettings = new ChartMarkerSettings
                     {
                         Type = ShapeType.Circle,
@@ -164,6 +184,13 @@ namespace DiabetesAppFrontend.ViewModels
 
             try
             {
+
+                if (_stolicBehavior != null) _stolicBehavior.SelectionChanged -= OnSelectionChanged;
+                if (_diastolicBehavior != null) _diastolicBehavior.SelectionChanged -= OnSelectionChanged;
+
+                BloodPressureEntries.Clear();
+                ChartSeries.Clear();
+
                 var token = await SecureStorage.GetAsync("auth_token");
                 if (!string.IsNullOrEmpty(token))
                 {
@@ -171,52 +198,16 @@ namespace DiabetesAppFrontend.ViewModels
                     var givenName = jwt.Claims.FirstOrDefault(c => c.Type == "given_name")?.Value;
                     UserName = !string.IsNullOrEmpty(givenName) ? $"Zalogowano {givenName}" : "Zalogowano (brak imienia)";
                 }
-                var bpList = await _apiService.GetBloodPressureEntries();
+                var bpList = await _apiService.GetBloodPressureEntries(SelectedDays);
+                ChartStartDate = DateTime.Now.AddDays(-SelectedDays-1);
+                ChartEndDate = DateTime.Now.AddDays(1);
                 foreach (var bp in bpList)
                 {
                     BloodPressureEntries.Add(bp);
                     Console.WriteLine($"[DEBUG] Dodano pomiar: {bp.MeasurementDate}, cisnienie: {bp.StolicPressure}/{bp.DiastolicPressure}");
                 }
                 Console.WriteLine($"[DEBUG] Liczba pobranych pomiarow cisnienia: {bpList.Count}");
-                BloodPressureEntries.Clear();
 
-                if(bpList == null || bpList.Count == 0)
-                {
-                    ChartStartDate = DateTime.Now.AddDays(-7);
-                    ChartEndDate = DateTime.Now;
-                }
-
-                else
-                {
-                    if (bpList.Any())
-                    {
-                        ChartStartDate = DateTime.Now.AddDays(-7);
-                        var maxDate = bpList.Max(s => s.MeasurementDate);
-                        ChartEndDate = maxDate.AddDays(1);
-
-                        var lastWeekEntries = bpList
-                           .Where(bp => bp.MeasurementDate >= ChartStartDate && bp.MeasurementDate <= ChartEndDate)
-                           .OrderBy(bp => bp.MeasurementDate)
-                           .ToList();
-
-
-                        Console.WriteLine($"[DEBUG] Ilosc pomiarow po filtracji: {lastWeekEntries.Count}");
-                        foreach (var bp in bpList)
-                        {
-                            BloodPressureEntries.Add(bp);
-                            Console.WriteLine($"[DEBUG] Dodano pomiar: {bp.MeasurementDate}, cisnienie: {bp.StolicPressure}/{bp.DiastolicPressure}");
-                        }
-                    }
-                    else
-                    {
-                        ChartStartDate = DateTime.Now.AddDays(-7);
-                        ChartEndDate = DateTime.Now;
-                    }
-
-                }
-
-                ChartSeries.Clear();
-                Console.WriteLine($"[DEBUG] Przed dodaniem serii, {ChartSeries.Count}");
 
                 _stolicBehavior = new DataPointSelectionBehavior { Type = ChartSelectionType.Single };
                 _stolicBehavior.SelectionChanged += OnSelectionChanged;
@@ -287,25 +278,29 @@ namespace DiabetesAppFrontend.ViewModels
             }
         }
 
-        private void OnSelectionChanged(object sender, ChartSelectionChangedEventArgs e)
+        private async void OnSelectionChanged(object sender, ChartSelectionChangedEventArgs e)
         {
+            Console.WriteLine($"[DEBUG] OnSelectionChanged wywolane");
+            if (e.NewIndexes.Count == 0) return;
+
+            int idx = e.NewIndexes[0];
+            Console.WriteLine($"[DEBUG] Wybrano indeks: {idx}");
+
             if (sender == _sugarBehavior)
             {
-                if (_sugarSeries.ItemsSource is List<SugarEntry> sugarList && e.NewIndexes.Count > 0)
+                if (_sugarSeries.ItemsSource is List<SugarEntry> sugarList && idx >= 0 && idx < sugarList.Count)
                 {
-                    int idx = e.NewIndexes[0];
-                    if (idx >= 0 && idx < sugarList.Count)
-                    {
-                        var selected = sugarList[idx];
-                    }
+                    var selected = sugarList[idx];
+                    Console.WriteLine($"[DEBUG] Wybrano wpis: {selected.Id} - {selected.SugarValue} - {selected.MealTime} - {selected.MealMarker}");
+                    var navigationParameter = new Dictionary<string, object> { { "Entry", selected } };
+                    await Shell.Current.GoToAsync(nameof(EditSugarEntryPage), navigationParameter);
                 }
             }
             else if (sender == _stolicBehavior)
             {
                 if (_stolicSeries.ItemsSource is List<BloodPressureDto> bpList && e.NewIndexes.Count > 0)
                 {
-                    int idx = e.NewIndexes[0];
-                    if (idx >= 0 && idx < bpList.Count)
+                    if (idx < bpList.Count)
                     {
                         var selected = bpList[idx];
                     }
@@ -315,13 +310,13 @@ namespace DiabetesAppFrontend.ViewModels
             {
                 if (_diastolicSeries.ItemsSource is List<BloodPressureDto> bpList && e.NewIndexes.Count > 0)
                 {
-                    int idx = e.NewIndexes[0];
-                    if (idx >= 0 && idx < bpList.Count)
+                    if (idx < bpList.Count)
                     {
                         var selected = bpList[idx];
                     }
                 }
             }
         }
+
     }
 }

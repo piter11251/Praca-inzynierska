@@ -118,10 +118,11 @@ namespace DiabetesApp.Services
             return entryDto;
         }
 
-        public async Task<List<GetEntryDto>> GetAllEntriesForUser(string userId)
+        public async Task<List<GetEntryDto>> GetAllEntriesForUser(string userId, int days)
         {
+            var dateLimit = DateTime.Now.AddDays(-days);
             var entries = await _context.Entries
-                .Where(e => e.UserId == userId)
+                .Where(e => e.UserId == userId && e.MealTime >= dateLimit)
                 .ToListAsync();
 
             if(entries.Count == 0)

@@ -55,6 +55,10 @@
             ContentTemplate="{DataTemplate views:BloodPressurePage}"/>
     </FlyoutItem>
 
+    <FlyoutItem Title="Ustawienia">
+        <ShellContent Title="Ustawienia" ContentTemplate="{DataTemplate views:SettingsPage}" Route="SettingsPage"/>
+    </FlyoutItem>
+
     <MenuItem
         Text="Wyloguj"
         Clicked="OnLogoutClicked">
