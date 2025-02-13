@@ -2,22 +2,55 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DiabetesAppFrontend.Views.SettingsPage"
+             xmlns:converters="clr-namespace:DiabetesAppFrontend.Converters"
+             xmlns:local="clr-namespace:DiabetesAppFrontend.Enums"
              Title="SettingsPage">
-    <VerticalStackLayout Padding="20" Spacing="10">
-        <Label Text="Ustawienia preferencji" FontSize="20" HorizontalOptions="Center"/>
 
-        <Label Text="Poziom cukru (niski): "/>
-        <Entry Text="{Binding SugarLow, Mode=TwoWay}" Keyboard="Numeric"/>
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label 
+            Text="Ustaw swoje preferencje"
+            FontSize="24"
+            HorizontalOptions="Center"/>
 
-        <Label Text="Poziom cukru (wysoki): "/>
-        <Entry Text="{Binding SugarHigh, Mode=TwoWay}" Keyboard="Numeric"/>
+        <CollectionView
+            ItemsSource="{Binding SugarLevels}"
+            x:Name="PreferencesCollection"
+            VerticalOptions="FillAndExpand">
 
-        <Label Text="Ciśnienie (niskie): "/>
-        <Entry Text="{Binding BloodPressureLow, Mode=TwoWay}" Keyboard="Numeric"/>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Spacing="5" Padding="5">
+                        <Label
+                            Text="{Binding MealMarker}"
+                            FontAttributes="Bold"
+                            FontSize="16"/>
 
-        <Label Text="Ciśnienie (wysokie): "/>
-        <Entry Text="{Binding BloodPressureHigh, Mode=TwoWay}" Keyboard="Numeric"/>
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="Min:" VerticalOptions="Center"/>
+                            <Entry
+                                Text="{Binding MinValue, Mode=TwoWay}"
+                                Keyboard="Numeric"
+                                WidthRequest="60"/>
 
-        <Button Text="Zapisz" Command="{Binding SaveCommand}"/>
+                            <Label Text="Max:" VerticalOptions="Center"/>
+                            <Entry
+                                Text="{Binding MaxValue, Mode=TwoWay}"
+                                Keyboard="Numeric"
+                                WidthRequest="60"/>
+                        </HorizontalStackLayout>
+
+                        <BoxView HeightRequest="1" Color="LightGray"/>
+
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
+
+        <Button 
+            Text="Zapisz zmiany"
+            Command="{Binding SaveCommand}"
+            HorizontalOptions="Center"/>
     </VerticalStackLayout>
+    
 </ContentPage>

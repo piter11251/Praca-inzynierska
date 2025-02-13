@@ -192,7 +192,7 @@ namespace Demo.ApiClient
             }
         }
 
-        public async Task<bool> ModifyBloodPressureAsync(BloodPressureEntry entry)
+        public async Task<bool> ModifyBloodPressureAsync(BloodPressureDto entry)
         {
             try
             {
@@ -203,11 +203,13 @@ namespace Demo.ApiClient
                 }
 
                 _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                var dto = new BloodPressureEntry
+                var dto = new BloodPressureDto
                 {
-                    StolicValue = entry.StolicValue,
-                    DiastolicValue = entry.DiastolicValue,
-                    MeasureTime = entry.MeasureTime
+                    MeasurementDate = entry.MeasurementDate,
+                    StolicPressure = entry.StolicPressure,
+                    DiastolicPressure = entry.DiastolicPressure,
+                    Pulse = entry.Pulse,
+                    IsIrregularPulse = entry.IsIrregularPulse
                 };
 
                 var json = JsonSerializer.Serialize(dto);
@@ -220,6 +222,66 @@ namespace Demo.ApiClient
                 return response.IsSuccessStatusCode;
             }
             catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+
+        public async Task<GetUserPreferencesDto?> GetUserPreferencesAsync()
+        {
+            try
+            {
+                var token = await SecureStorage.GetAsync("auth_token");
+                if (string.IsNullOrEmpty(token))
+                {
+                    return null;
+                }
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.GetAsync("api/user-preferences");
+                if (!response.IsSuccessStatusCode)
+                {
+                    var error = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine($"[ERROR] {error}");
+                    return null;
+                }
+
+                var data = await response.Content.ReadFromJsonAsync<GetUserPreferencesDto>();
+                return data;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public async Task<bool> UpdateUserPreferencesAsync(UpdateUserPreferencesDto dto)
+        {
+            try
+            {
+                var token = await SecureStorage.GetAsync("auth_token");
+                if (string.IsNullOrEmpty(token))
+                {
+                    return false;
+                }
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.PutAsJsonAsync("api/user-preferences", dto);
+                if (!response.IsSuccessStatusCode)
+                {
+                    var error = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine($"[ERROR] {error}");
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return false;

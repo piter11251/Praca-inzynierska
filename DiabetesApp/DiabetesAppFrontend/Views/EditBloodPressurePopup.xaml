@@ -5,15 +5,33 @@
     xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
     x:Class="DiabetesAppFrontend.Views.EditBloodPressurePopup">
     <VerticalStackLayout Padding="20" Spacing="10">
-        <Label Text="Edycja cisnienia" FontSize="20" />
-        <Entry x:Name="StolicEntry" Placeholder="Wpisz cisnienie skurczowe"/>
-        <Entry x:Name="DiastolicEntry" Placeholder="Wpisz cisnienie rozskurczowe"/>
-        <DatePicker x:Name="MeasureDatePicker"/>
-        <TimePicker x:Name="MeasureTimePicker"/>
+        <Label Text="Edycja cisnienia" FontSize="20" HorizontalOptions="Center"/>
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Cisnienie skurczowe: " Margin="0,15,0,0"/>
+            <Entry Text="{Binding StolicPressure, Mode=TwoWay}" Placeholder="Wpisz cisnienie skurczowe"/>
+        </HorizontalStackLayout>
 
-        <HorizontalStackLayout HorizontalOptions="End" Spacing="10">
-            <Button Text="Anuluj" Clicked="Cancel_Clicked" />
-            <Button Text="Zapisz" Clicked="Save_Clicked" />
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Cisnienie rozkurczowe: " Margin="0,15,0,0"/>
+            <Entry Text="{Binding DiastolicPressure, Mode=TwoWay}" Placeholder="Wpisz cisnienie rozkurczowe"/>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Nieregularne tętno "/>
+            <CheckBox IsChecked="{Binding IsIrregularPulse, Mode=TwoWay}"/>
+        </HorizontalStackLayout>
+        
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Data i godzina: " Margin="0,15,0,0"/>
+            <DatePicker Date="{Binding MeasureDate, Mode=TwoWay}"/>
+            <TimePicker Time="{Binding MeasureTime, Mode=TwoWay}"/>
+        </HorizontalStackLayout>
+        
+        
+
+        <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+            <Button Text="Anuluj" Clicked="ClosePopup" />
+            <Button Text="Zapisz" Command="{Binding SaveCommand}" />
         </HorizontalStackLayout>
     </VerticalStackLayout>
 </toolkit:Popup>

@@ -56,7 +56,6 @@ namespace DiabetesAppFrontend
             builder.Services.AddTransient<LandingViewModel>();
 
             builder.Services.AddTransient<EditSugarEntryViewModel>();
-            builder.Services.AddTransient<EditSugarEntryPage>();
     
             builder.Services.AddTransient<SettingsPageViewModel>();
             builder.Services.AddTransient<SettingsPage>();

@@ -1,45 +1,82 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Demo.ApiClient;
+using Demo.ApiClient.Models.ApiModels;
+using DiabetesAppFrontend.Enums;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Android.Icu.Text.CaseMap;
 
 namespace DiabetesAppFrontend.ViewModels
 {
-    public partial class SettingsPageViewModel: ObservableObject
+    public partial class SettingsPageViewModel : ObservableObject
     {
-        public SettingsPageViewModel()
-        {
-            SugarLow = AppPreferences.SugarLow;
-            SugarHigh = AppPreferences.SugarHigh;
-            BloodPressureLow = AppPreferences.BloodPressureLow;
-            BloodPressureHigh = AppPreferences.BloodPressureHigh;
+        private readonly DemoApiClientService _apiService;
+        [ObservableProperty]
+        private ObservableCollection<PreferableSugarLevelModel> sugarLevels;
 
+        public SettingsPageViewModel(DemoApiClientService apiService)
+        {
+            _apiService = apiService;
+            SugarLevels = new ObservableCollection<PreferableSugarLevelModel>();
         }
 
-        [ObservableProperty]
-        private int sugarLow;
-
-        [ObservableProperty] 
-        private int sugarHigh;
-
-        [ObservableProperty]
-        private int bloodPressureLow;
-
-        [ObservableProperty]
-        private int bloodPressureHigh;
+        public async Task LoadPreferencesAsync()
+        {
+            var data = await _apiService.GetUserPreferencesAsync();
+            if (data == null)
+            {
+                return;
+            }
+            SugarLevels.Clear();
+            foreach(var lvl in data.PrefelableSugarLevels)
+            {
+                var enumValue = (MealMarker)Enum.Parse(typeof(MealMarker), lvl.MealMarker);
+                SugarLevels.Add(new PreferableSugarLevelModel
+                {
+                    Id = lvl.Id,
+                    MealMarker = MealMarkerEnum.FriendlyNames(enumValue),
+                    MinValue = lvl.MinValue,
+                    MaxValue = lvl.MaxValue,
+                });
+            }
+        }
 
         [RelayCommand]
         private async Task SaveAsync()
         {
-            AppPreferences.SugarLow = SugarLow;
-            AppPreferences.SugarHigh = SugarHigh;
-            AppPreferences.BloodPressureLow = BloodPressureLow;
-            AppPreferences.BloodPressureHigh = BloodPressureHigh;
+            var dto = new UpdateUserPreferencesDto
+            {
+                PreferableSugarLevels = SugarLevels.Select(x => new UpdateSugarLevelDto
+                {
+                    Id = x.Id,
+                    MinValue = x.MinValue,
+                    MaxValue = x.MaxValue
+                })
+                .ToList()
+            };
 
-            await App.Current.MainPage.DisplayAlert("Sukces", "Ustawienia zapisane", "Ok");
+            var success = await _apiService.UpdateUserPreferencesAsync(dto);
+            if(!success)
+            {
+                await Application.Current.MainPage.DisplayAlert("Błąd", "Nie udało się zapisać preferencji", "Ok");
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Sukces", "Preferencje zostaly zapisane", "Ok");
+            }
         }
+    }
+
+    public class PreferableSugarLevelModel
+    {
+        public int Id { get; set; }
+        public string MealMarker { get; set; }
+        public int MinValue { get; set; }
+        public int MaxValue { get; set; }
     }
 }

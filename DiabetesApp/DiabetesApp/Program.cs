@@ -85,6 +85,7 @@ builder.Services.AddScoped<IValidator<ModifyEntryDto>, EntryDtoValidator<ModifyE
 builder.Services.AddScoped<IValidator<CreateBloodPressureEntryDto>, CreateBloodPressureDtoValidator>();
 builder.Services.AddScoped<IValidator<ModifyBloodPressureDto>, ModifyBloodPressureDtoValidator>();
 builder.Services.AddScoped<IValidator<RegisterDto>, RegisterUserValidator>();
+builder.Services.AddScoped<IUserPreferencesService, UserPreferencesService>();
 // middleware
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 

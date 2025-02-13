@@ -1,0 +1,40 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<toolkit:Popup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+    x:Class="DiabetesAppFrontend.Views.EditSugarEntryPopup">
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label Text="Edytuj wpis cukru" FontSize="20" HorizontalOptions="Center"/>
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Odczyt cukru: " Margin="0,15,0,0"/>
+            <Entry
+                x:Name="SugarValueEntry"
+                Placeholder="Cukier(mg/dl)"
+                Text="{Binding Entry.SugarValue, Mode=TwoWay}"/>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Data pomiaru: " Margin="0,15,0,0"/>
+            <Entry
+                x:Name="MealTimeEntry"
+                Placeholder="Czas (Data/Godzina)"
+                Text="{Binding Entry.MealTime, Mode=TwoWay}" VerticalOptions="Center"/>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Pora pomiaru: " Margin="0,15,0,0"/>
+            <Entry
+                x:Name="MealMarkerEntry"
+                Placeholder="MealMarker"
+                Text="{Binding Entry.MealMarker, Mode=TwoWay}"/>
+        </HorizontalStackLayout>
+        
+
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+            <Button Text="Zapisz" Command="{Binding SaveCommand}"/>
+            <Button Text="Zamknij" Clicked="ClosePopup"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+    
+</toolkit:Popup>

@@ -12,4 +12,14 @@ public partial class SugarEntryView : ContentPage
 		InitializeComponent();
 		BindingContext = vm;
 	}
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+		if(BindingContext is SugarEntryViewModel vm)
+		{
+			await vm.LoadUserPreferencesAsync();
+		}
+    }
 }

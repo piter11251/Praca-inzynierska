@@ -22,7 +22,7 @@ namespace DiabetesAppFrontend.Enums
             {
                 MealType.Breakfast => "Sniadanie",
                 MealType.Lunch => "Obiad",
-                MealType.Dinner => "Dinner",
+                MealType.Dinner => "Kolacja",
                 MealType.Snack => "Przekaska"
             };
         }

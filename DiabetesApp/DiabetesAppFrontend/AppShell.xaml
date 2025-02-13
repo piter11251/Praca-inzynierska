@@ -27,7 +27,7 @@
             ContentTemplate="{DataTemplate views:HomePage}"/>
     </FlyoutItem>
 
-    <FlyoutItem Title="Sugar Entry">
+    <FlyoutItem Title="Cukier">
         <FlyoutItem.Icon>
             <FontImageSource
                 Glyph="{x:Static icons:Icons.Sugar}"
@@ -56,6 +56,13 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Ustawienia">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                Glyph="{x:Static icons:Icons.Settings}"
+                FontFamily="MaterialSymbols"
+                Color="Black"
+                Size="24"/>
+        </FlyoutItem.Icon>
         <ShellContent Title="Ustawienia" ContentTemplate="{DataTemplate views:SettingsPage}" Route="SettingsPage"/>
     </FlyoutItem>
 

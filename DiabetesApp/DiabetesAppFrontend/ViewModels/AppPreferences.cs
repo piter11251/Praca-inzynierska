@@ -8,28 +8,40 @@ namespace DiabetesAppFrontend.ViewModels
 {
     public static class AppPreferences
     {
-        public static int SugarLow
+        public static int SugarBeforeMealLower
         {
-            get => Preferences.Get(nameof(SugarLow), 70);
-            set => Preferences.Set(nameof(SugarLow), value);
+            get => Preferences.Get(nameof(SugarBeforeMealLower), 70);
+            set => Preferences.Set(nameof(SugarBeforeMealLower), value);
         }
 
-        public static int SugarHigh
+        public static int SugarBeforeMealUpper
         {
-            get => Preferences.Get(nameof(SugarLow), 140);
-            set => Preferences.Set(nameof(SugarLow), value);
+            get => Preferences.Get(nameof(SugarBeforeMealUpper), 70);
+            set => Preferences.Set(nameof(SugarBeforeMealUpper), value);
         }
 
-        public static int BloodPressureLow
+        public static int SugarAfterMealLower
         {
-            get => Preferences.Get(nameof(BloodPressureLow), 90);
-            set => Preferences.Set(nameof(BloodPressureLow), value);
+            get => Preferences.Get(nameof(SugarAfterMealLower), 140);
+            set => Preferences.Set(nameof(SugarAfterMealLower), value);
         }
 
-        public static int BloodPressureHigh
+        public static int SugarAfterMealUpper
         {
-            get => Preferences.Get(nameof(BloodPressureHigh), 140);
-            set => Preferences.Set(nameof(BloodPressureHigh), value);
+            get => Preferences.Get(nameof(SugarAfterMealUpper), 140);
+            set => Preferences.Set(nameof(SugarAfterMealUpper), value);
+        }
+
+        public static int SugarFastingLower
+        {
+            get => Preferences.Get(nameof(SugarFastingLower), 90);
+            set => Preferences.Set(nameof(SugarFastingLower), value);
+        }
+
+        public static int SugarFastingUpper
+        {
+            get => Preferences.Get(nameof(SugarFastingUpper), 90);
+            set => Preferences.Set(nameof(SugarFastingUpper), value);
         }
     }
 }

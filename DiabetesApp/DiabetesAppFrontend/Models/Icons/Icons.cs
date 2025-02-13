@@ -14,5 +14,6 @@ namespace DiabetesAppFrontend.Models.Icons
         public static string Sugar = "\ue4a0";
         public static string BloodPressure = "\ue097";
         public static string Workout = "\uf6e6";
+        public static string Settings = "\ue8b8";
     }
 }

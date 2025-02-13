@@ -30,7 +30,9 @@
             HeightRequest="300"
             Series="{Binding ChartSeries}">
 
-            
+            <chart:SfCartesianChart.Legend>
+                <chart:ChartLegend/>
+            </chart:SfCartesianChart.Legend>
 
             <chart:SfCartesianChart.XAxes>
                 <chart:DateTimeAxis Minimum="{Binding ChartStartDate}" Maximum="{Binding ChartEndDate}" Interval="{Binding ChartInterval}" IntervalType="Days">

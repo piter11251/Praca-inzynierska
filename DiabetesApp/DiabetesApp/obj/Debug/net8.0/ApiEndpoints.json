@@ -202,6 +202,42 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "DiabetesApp.Controllers.UserPreferencesController",
+    "Method": "GetUserPreferences",
+    "RelativePath": "api/user-preferences",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "DiabetesApp.Dto.UserPreferencesDtos.GetUserPreferencesDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DiabetesApp.Controllers.UserPreferencesController",
+    "Method": "UpdateUserPreferences",
+    "RelativePath": "api/user-preferences",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "DiabetesApp.Dto.UserPreferencesDtos.UpdateUserPreferencesDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions\u002B\u003C\u003Ec__1\u00601[[DiabetesApp.Entities.User, DiabetesApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "\u003CMapIdentityApi\u003Eb__1_3",
     "RelativePath": "confirmEmail",
