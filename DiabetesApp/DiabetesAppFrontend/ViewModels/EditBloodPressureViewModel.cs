@@ -13,6 +13,7 @@ namespace DiabetesAppFrontend.ViewModels
     public partial class EditBloodPressureViewModel: ObservableObject
     {
         private readonly DemoApiClientService _apiService;
+        public event EventHandler RequestClose;
         [ObservableProperty] private int id;
         [ObservableProperty] private int stolicPressure;
         [ObservableProperty] private int diastolicPressure;
@@ -53,6 +54,7 @@ namespace DiabetesAppFrontend.ViewModels
                 else
                 {
                     Console.WriteLine("[DEBUG] UDALO SIE");
+                    RequestClose?.Invoke(this, EventArgs.Empty);
                 }
             }
             catch(Exception ex)

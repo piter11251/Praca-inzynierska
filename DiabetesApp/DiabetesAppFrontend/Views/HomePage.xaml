@@ -30,14 +30,25 @@
             HeightRequest="300"
             Series="{Binding ChartSeries}">
 
+            <chart:SfCartesianChart.ZoomPanBehavior>
+                <chart:ChartZoomPanBehavior EnablePanning="True" ZoomMode="X"/>
+            </chart:SfCartesianChart.ZoomPanBehavior>
+
             <chart:SfCartesianChart.Legend>
                 <chart:ChartLegend/>
             </chart:SfCartesianChart.Legend>
 
             <chart:SfCartesianChart.XAxes>
-                <chart:DateTimeAxis Minimum="{Binding ChartStartDate}" Maximum="{Binding ChartEndDate}" Interval="{Binding ChartInterval}" IntervalType="Days">
+                <chart:DateTimeAxis 
+                    Minimum="{Binding ChartStartDate}" 
+                    Maximum="{Binding ChartEndDate}" 
+                    Interval="7" 
+                    IntervalType="Days"
+                    
+                    ZoomFactor="0.8" 
+                    ZoomPosition="0.2">
                     <chart:DateTimeAxis.LabelStyle>
-                        <chart:ChartAxisLabelStyle FontSize="14" TextColor="Black"/>
+                        <chart:ChartAxisLabelStyle LabelFormat="dd" FontSize="14" TextColor="Black"/>
                     </chart:DateTimeAxis.LabelStyle>
                 </chart:DateTimeAxis>
                 

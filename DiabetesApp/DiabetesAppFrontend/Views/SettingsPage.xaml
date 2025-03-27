@@ -4,7 +4,7 @@
              x:Class="DiabetesAppFrontend.Views.SettingsPage"
              xmlns:converters="clr-namespace:DiabetesAppFrontend.Converters"
              xmlns:local="clr-namespace:DiabetesAppFrontend.Enums"
-             Title="SettingsPage">
+             Title="">
 
     <VerticalStackLayout Padding="20" Spacing="15">
         <Label 

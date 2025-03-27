@@ -5,6 +5,7 @@ using DiabetesApp.Entities.Enum;
 using DiabetesApp.Exceptions;
 using DiabetesApp.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -116,6 +117,21 @@ namespace DiabetesApp.Services
                     }
                 }
             };
+        }
+        public async Task<UserProfileDto> GetUserProfileAsync(string userId)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            if(user == null)
+            {
+                throw new Exception("Nie znaleziono uzytkownika");
+            }
+            var dto = new UserProfileDto
+            {
+                UserId = user.Id,
+                DateOfBirth = user.BirthDate
+            };
+            return dto;
+
         }
     }
 }

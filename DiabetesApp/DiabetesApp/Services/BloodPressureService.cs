@@ -83,6 +83,7 @@ namespace DiabetesApp.Services
             {
                 var entryDto = new GetBloodPressureDto
                 {
+                    Id = entry.Id,
                     DiastolicPressure = entry.DiastolicPressure,
                     StolicPressure = entry.StolicPressure,
                     Pulse = entry.Pulse,

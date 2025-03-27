@@ -2,6 +2,8 @@
 <toolkit:Popup
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+    xmlns:local="clr-namespace:DiabetesAppFrontend.Enums"
     xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
     x:Class="DiabetesAppFrontend.Views.EditSugarEntryPopup">
     <VerticalStackLayout Padding="20" Spacing="15">
@@ -16,24 +18,31 @@
 
         <HorizontalStackLayout Spacing="10">
             <Label Text="Data pomiaru: " Margin="0,15,0,0"/>
-            <Entry
-                x:Name="MealTimeEntry"
-                Placeholder="Czas (Data/Godzina)"
-                Text="{Binding Entry.MealTime, Mode=TwoWay}" VerticalOptions="Center"/>
+            <DatePicker 
+                x:Name="MealDateTimePicker"
+                Date="{Binding MealDate, Mode=TwoWay}"
+                Format="dd.MM.yyyy"
+                MaximumDate="{Binding Source={x:Static sys:DateTime.Now}}"/>
+            <TimePicker x:Name="MealTimePicker"
+                        Format="HH:mm"
+                        Time="{Binding MealTime, Mode=TwoWay}"/>
         </HorizontalStackLayout>
 
         <HorizontalStackLayout Spacing="10">
             <Label Text="Pora pomiaru: " Margin="0,15,0,0"/>
-            <Entry
+
+
+            <Picker
                 x:Name="MealMarkerEntry"
-                Placeholder="MealMarker"
-                Text="{Binding Entry.MealMarker, Mode=TwoWay}"/>
+                SelectedItem="{Binding SelectedMealMarker, Mode=TwoWay}"
+                ItemsSource="{x:Static local:MealMarkerEnum.Values}"
+                Title="Wybierz pore pomiaru"/>
         </HorizontalStackLayout>
-        
+
 
         <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
-            <Button Text="Zapisz" Command="{Binding SaveCommand}"/>
             <Button Text="Zamknij" Clicked="ClosePopup"/>
+            <Button Text="Zapisz" Command="{Binding SaveCommand}"/>
         </HorizontalStackLayout>
     </VerticalStackLayout>
     

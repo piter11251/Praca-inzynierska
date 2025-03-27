@@ -4,37 +4,82 @@
              xmlns:sys="clr-namespace:System;assembly=System.Runtime"
              xmlns:vm="clr-namespace:DiabetesAppFrontend.ViewModels"
              x:Class="DiabetesAppFrontend.Views.BloodPressurePage"
-             Title="BloodPressurePage">
+             Title="">
 
-    
-    
-    <VerticalStackLayout Padding="20" Spacing="15">
+
+    <Grid Padding="20" RowSpacing="15" ColumnDefinitions="Auto, *">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Text="Ciśnienie skurczowe: "
+               VerticalOptions="Center"
+               Grid.Row="0" Grid.Column="0"/>
+
         <Entry
             Placeholder="Ciśnienie skurczowe"
             Text="{Binding StolicPressure}"
-            Keyboard="Numeric"/>
+            Keyboard="Numeric"
+            Grid.Row="0" Grid.Column="1"/>
+
+        <Label Text="Ciśnienie rozkurczowe: "
+               VerticalOptions="Center"
+               Grid.Row="1" Grid.Column="0"/>
 
         <Entry
             Placeholder="Ciśnienie rozkurczowe"
             Text="{Binding DiastolicPressure}"
-            Keyboard="Numeric"/>
+            Keyboard="Numeric"
+            Grid.Row="1" Grid.Column="1"/>
+
+        <Label Text="Puls: "
+               VerticalOptions="Center"
+               Grid.Row="2" Grid.Column="0"/>
 
         <Entry
             Placeholder="Puls"
             Text="{Binding Pulse}"
-            Keyboard="Numeric"/>
+            Keyboard="Numeric"
+            Grid.Row="2" Grid.Column="1"/>
+        
+        <Label Text="Nieregularny puls?" 
+               VerticalTextAlignment="Center"
+               Grid.Row="3" Grid.Column="0"/>
+        <CheckBox IsChecked="{Binding HasIrregularPulse}" 
+                  Grid.Row="3" Grid.Column="1"
+                  HorizontalOptions="Start"/>
 
-        <HorizontalStackLayout Spacing="10">
-            <Label Text="Nieregularny puls?" VerticalTextAlignment="Center"/>
-            <CheckBox IsChecked="{Binding HasIrregularPulse}" />
-        </HorizontalStackLayout>
+        <Label Text="Data: "
+               VerticalOptions="Center"
+               Grid.Row="4" Grid.Column="0"/>
 
-        <DatePicker Date="{Binding Date}"/>
-        <TimePicker Time="{Binding Time}"/>
+        <DatePicker Date="{Binding Date}"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Row="4" Grid.Column="1"/>
+
+        <Label Text="Czas: "
+               VerticalOptions="Center"
+               Grid.Row="5" Grid.Column="0"/>
+        <TimePicker Time="{Binding Time}"
+                    Format="HH:mm"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Row="5" Grid.Column="1"/>
 
         <Button Text="Prześlij pomiar"
-                Command="{Binding SendEntryCommand}"/>
+                Command="{Binding SendEntryCommand}"
+                Grid.Row="6" Grid.ColumnSpan="2"
+                HorizontalOptions="Fill"/>
 
-        <Label Text="{Binding ErrorMessage}" TextColor="Red" />
-    </VerticalStackLayout>
+        <Label Text="{Binding ErrorMessage}" TextColor="Red"
+               Grid.Row="7" Grid.ColumnSpan="2"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"/>
+    </Grid>
 </ContentPage>

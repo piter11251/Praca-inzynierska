@@ -132,6 +132,7 @@ namespace DiabetesApp.Services
 
             return entries.Select(entry => new GetEntryDto
             {
+                Id = entry.Id,
                 SugarValue = entry.SugarValue,
                 MealTime = entry.MealTime,
                 MealMarker = Enum.GetName(typeof(MealMarker), entry.MealMarker)

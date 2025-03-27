@@ -13,7 +13,7 @@ namespace DiabetesAppFrontend.ViewModels
     public partial class BloodPressureViewModel: ObservableObject
     {
         private readonly DemoApiClientService _apiService;
-
+        private int _userAge;
         [ObservableProperty] private string stolicPressure;
         [ObservableProperty] private string diastolicPressure;
         [ObservableProperty] private string pulse;
@@ -25,6 +25,7 @@ namespace DiabetesAppFrontend.ViewModels
         public BloodPressureViewModel(DemoApiClientService apiService)
         {
             _apiService = apiService;
+            _ = LoadUserProfileAsync();
         }
 
         [RelayCommand]
@@ -40,6 +41,50 @@ namespace DiabetesAppFrontend.ViewModels
                 return;
             }
 
+            int minStolic, maxStolic, minDiastolic = 70, maxDiastolic = 79;
+            if(_userAge <= 65)
+            {
+                minStolic = 120;
+                maxStolic = 129;
+            }
+            else if(_userAge > 65 && _userAge <= 80)
+            {
+                minStolic = 130;
+                maxStolic = 139;
+            }
+            else
+            {
+                minStolic = 130;
+                maxStolic = 149;
+            }
+            bool outOfRangeStolic = (stolic < minStolic || stolic > maxStolic);
+            bool outOfRangeDiastolic = (diastolic < minDiastolic || diastolic >  maxDiastolic);
+
+
+            if(outOfRangeStolic || outOfRangeDiastolic)
+            {
+                await Shell.Current.DisplayAlert("Uwaga",
+                    $"Twoje cisnienie ({stolic}/{diastolic} odbiega od " +
+                    $"zalecanego zakresu {minStolic}-{maxStolic}/" +
+                    $"{minDiastolic}/{maxDiastolic}). Zwróć uwagę na samopoczucie.",
+                    "OK");
+            }
+
+            if(pulseVal < 60 && pulseVal > 100)
+            {
+                await Shell.Current.DisplayAlert("Nieprawidłowy puls",
+                    $"Puls {pulseVal} jest nieprawidłowy. Obserwuj samopoczucie.",
+                    "OK");
+            }
+
+            if(HasIrregularPulse && (outOfRangeStolic || outOfRangeDiastolic))
+            {
+                await Shell.Current.DisplayAlert("Pilne",
+                    "Masz nieregularny puls przy wysokim ciśnieniu! " +
+                    "Skonsultuj się z lekarzem.",
+                    "OK");
+            }
+
             DateTime fullDate = new DateTime(date.Year, date.Month, date.Day, time.Hours, time.Minutes, 0);
             var dto = new BloodPressureDto
             {
@@ -53,12 +98,31 @@ namespace DiabetesAppFrontend.ViewModels
             try
             {
                 await _apiService.AddBloodPressureAsync(dto);
-                await Shell.Current.DisplayAlert("Sukces", "Pomiar ciśnienia", "OK");
+                await Shell.Current.DisplayAlert("Sukces", "Pomiar ciśnienia zapisany", "OK");
             }
             catch (Exception ex)
             {
                 ErrorMessage = $"Błąd: {ex.Message}";
             }
+        }
+
+        private async Task LoadUserProfileAsync()
+        {
+            var profile = await _apiService.GetUserProfileAsync();
+            if(profile != null)
+            {
+                _userAge = CalculateAge(profile.DateOfBirth);
+                Console.WriteLine("Wiek usera: " + _userAge);
+            }
+        }
+
+        private int CalculateAge(DateTime dateOfBirth)
+        {
+            var today = DateTime.Today;
+            int age = today.Year - dateOfBirth.Year;
+            if (dateOfBirth.Date > today.AddYears(-age))
+                age--;
+            return age;
         }
     }
 }

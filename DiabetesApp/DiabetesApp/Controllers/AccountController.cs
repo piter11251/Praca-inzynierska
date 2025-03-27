@@ -38,6 +38,24 @@ namespace DiabetesApp.Controllers
             return Ok(token);
         }
 
+        [HttpGet("get-info")]
+        public async Task<ActionResult<UserProfileDto>> GetProfile()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized("Brak userId w tokenie");
+            }
+            try
+            {
+                var profileDto = await _accountService.GetUserProfileAsync(userId);
+                return Ok(profileDto);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
         
     }
 }

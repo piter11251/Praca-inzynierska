@@ -14,5 +14,6 @@ namespace Demo.ApiClient.Models.ApiModels
         public int DiastolicPressure { get; set; }
         public int Pulse { get; set; }
         public bool IsIrregularPulse { get; set; } = false;
+        public DateTime ShiftedDateTime { get; set; }
     }
 }

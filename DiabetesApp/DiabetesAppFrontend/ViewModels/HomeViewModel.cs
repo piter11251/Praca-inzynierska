@@ -86,7 +86,28 @@ namespace DiabetesAppFrontend.ViewModels
         {
             if (IsBusy) return;
 
-            ChartInterval = Math.Ceiling((double)newValue / 7.0);
+            /*ChartInterval = Math.Ceiling((double)newValue / 7.0);
+
+            if (SelectedChartIndex == 0)
+                _ = LoadSugarChartAsync();
+            else
+                _ = LoadBloodPressureChartAsync();*/
+
+            switch (newValue)
+            {
+                case 7:
+                    ChartInterval = 12;
+                    break;
+                case 14:
+                    ChartInterval = 24;
+                    break;
+                case 30:
+                    ChartInterval = 48;
+                    break;
+                default:
+                    ChartInterval = 12;
+                    break;
+            }
 
             if (SelectedChartIndex == 0)
                 _ = LoadSugarChartAsync();
@@ -134,7 +155,7 @@ namespace DiabetesAppFrontend.ViewModels
                 }
                 var sugarList = await _apiService.GetAllSugarEntries(SelectedDays);
                 ChartStartDate = DateTime.Now.AddDays(-SelectedDays);
-                ChartEndDate = DateTime.Now;
+                ChartEndDate = DateTime.Now.AddDays(1);
                 
                 /*foreach(var s in sugarList)
                 {
@@ -164,19 +185,19 @@ namespace DiabetesAppFrontend.ViewModels
                     XBindingPath = nameof(SugarEntryDisplayModel.MealTime),
                     YBindingPath = nameof(SugarEntryDisplayModel.SugarValue),
                     Label = "Cukier",
-                    StrokeWidth = 1,
+                    StrokeWidth = 2,
                     ShowMarkers = true,
                     MarkerSettings = new ChartMarkerSettings
                     {
                         Type = ShapeType.Circle,
                         Fill = new SolidColorBrush(Color.FromArgb("#5DADE2")),
                         Stroke = new SolidColorBrush(Color.FromArgb("#2E86C1")),
-                        StrokeWidth = 2,
-                        Width = 10,
-                        Height = 10
+                        StrokeWidth = 3,
+                        Width = 12,
+                        Height = 12
                     },
                     SelectionBehavior = _sugarBehavior,
-                    ShowDataLabels = true,
+                    ShowDataLabels = false,
                     DataLabelSettings = new CartesianDataLabelSettings
                     {
                        
@@ -232,13 +253,32 @@ namespace DiabetesAppFrontend.ViewModels
                 var bpList = await _apiService.GetBloodPressureEntries(SelectedDays);
                 ChartStartDate = DateTime.Now.AddDays(-SelectedDays-1);
                 ChartEndDate = DateTime.Now.AddDays(1);
+                
+                Console.WriteLine($"[DEBUG] Liczba pobranych pomiarow cisnienia: {bpList.Count}");
+                bpList = bpList.OrderBy(bp => bp.MeasurementDate).ToList();
+                var grouped = bpList.GroupBy(bp => new DateTime(
+                    bp.MeasurementDate.Year,
+                    bp.MeasurementDate.Month,
+                    bp.MeasurementDate.Day,
+                    bp.MeasurementDate.Hour,
+                    0,
+                    0));
+
+                foreach(var group in grouped)
+                {
+                    int index = 0;
+                    foreach(var bp in group)
+                    {
+                        bp.ShiftedDateTime = bp.MeasurementDate.AddHours(1 * index);
+                        index++;
+                    }
+                }
+
                 foreach (var bp in bpList)
                 {
                     BloodPressureEntries.Add(bp);
                     Console.WriteLine($"[DEBUG] Dodano pomiar: {bp.MeasurementDate}, cisnienie: {bp.StolicPressure}/{bp.DiastolicPressure}");
                 }
-                Console.WriteLine($"[DEBUG] Liczba pobranych pomiarow cisnienia: {bpList.Count}");
-
 
                 _stolicBehavior = new DataPointSelectionBehavior { Type = ChartSelectionType.Single };
                 _stolicBehavior.SelectionChanged += OnSelectionChanged;
@@ -246,28 +286,30 @@ namespace DiabetesAppFrontend.ViewModels
                 _stolicSeries = new LineSeries
                 {
                     ItemsSource = BloodPressureEntries,
-                    XBindingPath = nameof(BloodPressureDto.MeasurementDate),
+                    XBindingPath = nameof(BloodPressureDto.ShiftedDateTime),
                     YBindingPath = nameof(BloodPressureDto.StolicPressure),
                     Label = "Cisnienie skurczowe",
                     ShowMarkers = true,
+                    StrokeWidth = 2,
                     MarkerSettings = new ChartMarkerSettings
                     {
                         Type = ShapeType.Circle,
                         Fill = new SolidColorBrush(Color.FromArgb("#5DADE2")),
                         Stroke = new SolidColorBrush(Color.FromArgb("#2E86C1")),
-                        StrokeWidth = 2,
-                        Width = 10,
-                        Height = 10
+                        StrokeWidth = 3,
+                        Width = 12,
+                        Height = 12
                     },
-                    ShowDataLabels = true,
+                    ShowDataLabels = false,
                     DataLabelSettings = new CartesianDataLabelSettings
                     {
                         LabelStyle = new ChartDataLabelStyle
                         {
                             TextColor = Colors.Black,
-                            FontSize = 12
+                            FontSize = 10,
+                            CornerRadius = 4
                         },
-                        LabelPlacement = DataLabelPlacement.Outer
+                        LabelPlacement = DataLabelPlacement.Inner
                     },
                     SelectionBehavior = _stolicBehavior,
                     EnableTooltip = true
@@ -279,30 +321,32 @@ namespace DiabetesAppFrontend.ViewModels
                 _diastolicSeries = new LineSeries
                 {
                     ItemsSource = BloodPressureEntries,
-                    XBindingPath = nameof(BloodPressureDto.MeasurementDate),
+                    XBindingPath = nameof(BloodPressureDto.ShiftedDateTime),
                     YBindingPath = nameof(BloodPressureDto.DiastolicPressure),
                     Label = "Cisnienie rozkurczowe",
                     ShowMarkers = true,
+                    StrokeWidth = 2,
                     MarkerSettings = new ChartMarkerSettings
                     {
                         Type = ShapeType.Circle,
                         Fill = new SolidColorBrush(Color.FromArgb("#D7BDE2")),
                         Stroke = new SolidColorBrush(Color.FromArgb("#2E86C1")),
-                        StrokeWidth = 2,
-                        Width = 10,
-                        Height = 10
+                        StrokeWidth = 3,
+                        Width = 12,
+                        Height = 12
                     },
                     PaletteBrushes = new List<Brush> { new SolidColorBrush(Color.FromArgb("#A6CABD"))},
-                    ShowDataLabels = true,
+                    ShowDataLabels = false,
                     DataLabelSettings = new CartesianDataLabelSettings
                     {
                         LabelStyle = new ChartDataLabelStyle
                         {
                             TextColor = Colors.Black,
                             Background = new SolidColorBrush(Color.FromArgb("#A6CABD")),
-                            FontSize = 12
+                            FontSize = 10,
+                            CornerRadius = 4
                         },
-                        LabelPlacement = DataLabelPlacement.Outer
+                        LabelPlacement = DataLabelPlacement.Inner
                     },
                     SelectionBehavior = _diastolicBehavior,
                     EnableTooltip = true
@@ -355,7 +399,10 @@ namespace DiabetesAppFrontend.ViewModels
                         if (idx < bpList.Count)
                         {
                             var selected = bpList[idx];
-                            await Application.Current.MainPage.ShowPopupAsync(new EditBloodPressurePopup(selected, _apiService));
+                            var popup = new EditBloodPressurePopup(selected, _apiService);
+                            popup.Size = new Size(400, 400);
+                            await Application.Current.MainPage.ShowPopupAsync(popup);
+                            //await Application.Current.MainPage.ShowPopupAsync(new EditBloodPressurePopup(selected, _apiService));
                         }
                     }
                 }

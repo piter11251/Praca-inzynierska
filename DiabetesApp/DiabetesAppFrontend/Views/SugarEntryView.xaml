@@ -9,35 +9,79 @@
              Title=""
              >
 
-    <VerticalStackLayout Padding="20" Spacing="15">
-        <Entry
-            Placeholder="Pomiar cukru"
-            Text="{Binding SugarValue}"
-            Keyboard="Numeric"/>
+        <Grid Padding="20" RowSpacing="15" HorizontalOptions="Fill" VerticalOptions="Start">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <DatePicker
-            Date="{Binding Date}"
-            MaximumDate="{x:Static sys:DateTime.Now}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+            <Label Text="Odczyt cukru: " 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Start"
+                   Grid.Row="0" Grid.Column="0"/>
+            <Entry
+                Grid.Row="0"
+                Grid.Column="1"
+                Placeholder="Pomiar cukru"
+                Text="{Binding SugarValue}"
+                Keyboard="Numeric"
+                HorizontalOptions="FillAndExpand"
+                />
 
-        <TimePicker
-            Time="{Binding Time}"
-            Format="HH:mm" />
 
-        <Picker Title="Typ posiłku"
+            <Label Text="Data: "
+               VerticalOptions="Center"
+               Grid.Row="1" Grid.Column="0"/>
+            <DatePicker
+                Date="{Binding Date}"
+                MaximumDate="{x:Static sys:DateTime.Now}"
+                Grid.Row="1"
+                Grid.Column="1"/>
+
+            <Label Text="Czas: "
+                   VerticalOptions="Center"
+                   Grid.Row="2" Grid.Column="0"/>
+            <TimePicker
+                Time="{Binding Time}"
+                Format="HH:mm"
+                Grid.Row="2" Grid.Column="1"/>
+
+            <Label Text="Typ posiłku: "
+                   VerticalOptions="Center"
+                   Grid.Row="3" Grid.Column="0"/>
+
+            <Picker Title="Typ posiłku"
                 SelectedIndex="{Binding SelectedMealType}"
-                ItemsSource="{x:Static local:MealTypeEnum.Values}"/>
+                ItemsSource="{x:Static local:MealTypeEnum.Values}"
+                Grid.Row="3" Grid.Column="1"/>
 
-        <Picker Title="Pora posiłku"
+            <Label Text="Pora posiłku: "
+                   VerticalOptions="Center"
+                   Grid.Row="4" Grid.Column="0"/>
+
+            <Picker Title="Pora posiłku"
                 SelectedIndex="{Binding SelectedMealMarker}"
-                ItemsSource="{x:Static local:MealMarkerEnum.Values}"/>
+                ItemsSource="{x:Static local:MealMarkerEnum.Values}"
+                Grid.Row="4" Grid.Column="1"/>
 
-        <Button Text="Prześlij pomiar"
-                Command="{Binding SendEntryCommand}"/>
+            <Button Text="Prześlij pomiar"
+                    Command="{Binding SendEntryCommand}"
+                    Grid.Row="5" Grid.ColumnSpan="2"/>
 
-        <Label
-            Text="{Binding ErrorMessage}"
-            TextColor="Red"/>
+            <Label
+                Text="{Binding ErrorMessage}"
+                TextColor="Red"
+                Grid.Row="6" Grid.ColumnSpan="2"
+                />
 
-
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage> 

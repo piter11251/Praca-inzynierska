@@ -17,10 +17,22 @@ namespace DiabetesAppFrontend.ViewModels
         private readonly DemoApiClientService _apiService;
         [ObservableProperty]
         private SugarEntry entry;
+        [ObservableProperty]
+        private string selectedMealMarker;
+        [ObservableProperty]
+        private DateTime mealDate;
+        [ObservableProperty]
+        private TimeSpan mealTime;
+        public List<string> MealMarkerOptions { get; } = MealMarkerEnum.Values;
         public EditSugarEntryViewModel(SugarEntry sugarEntry, DemoApiClientService apiService)
         {
             Entry = sugarEntry;
             _apiService = apiService;
+
+            MealDate = Entry.MealTime.Date;
+            MealTime = Entry.MealTime.TimeOfDay;
+
+            SelectedMealMarker = MealMarkerEnum.FriendlyNames(Enum.Parse<MealMarker>(Entry.MealMarker));
         }
 
         [RelayCommand]
@@ -29,7 +41,9 @@ namespace DiabetesAppFrontend.ViewModels
             if(Entry == null) return;
             try
             {
-                await _apiService.ModifyEntryAsync(entry);
+                Entry.MealTime = MealDate + MealTime;
+                Entry.MealMarker = Enum.GetName(typeof(MealMarker), MealMarkerEnum.Values.IndexOf(SelectedMealMarker));
+                await _apiService.ModifyEntryAsync(Entry);
                 WeakReferenceMessenger.Default.Send(new SugarEntryUpdatedMessage(Entry));
             }
             catch(Exception ex)
@@ -37,5 +51,6 @@ namespace DiabetesAppFrontend.ViewModels
                 Console.WriteLine($"[Error] {ex.Message}");
             }
         }
+
     }
 }

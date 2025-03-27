@@ -6,5 +6,6 @@ namespace DiabetesApp.Services.Interfaces
     {
         Task Register(RegisterDto dto);
         Task<string> Login(LoginDto dto);
+        Task<UserProfileDto> GetUserProfileAsync(string userId);
     }
 }

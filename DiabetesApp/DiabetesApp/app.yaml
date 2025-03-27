@@ -1,0 +1,8 @@
+﻿runtime: custom
+env: flex
+entrypoint: dotnet DiabetesApp.dll
+
+
+env_variables:
+    ASPNETCORE_ENVIRONMENT: "Production"
+    ConnectionStrings__DefaultConnection: "Server=tcp:34.116.240.254,1433;Initial Catalog=DiabetesAppDb;Persist Security Info=False;User ID=sqlserver;Password='>c,X65^OziFmQX;t';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"

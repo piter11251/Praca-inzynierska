@@ -13,7 +13,7 @@
         ContentTemplate="{DataTemplate views:LandingPage}"
         Shell.NavBarIsVisible="False"/>
 
-    <FlyoutItem Title="Home">
+    <FlyoutItem Title="Strona domowa">
         <FlyoutItem.Icon>
             <FontImageSource
                 Glyph="{x:Static icons:Icons.Home}"

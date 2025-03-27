@@ -288,6 +288,26 @@ namespace Demo.ApiClient
             }
         }
 
+        public async Task<UserProfileDto?> GetUserProfileAsync()
+        {
+            var token = await SecureStorage.GetAsync("auth_token");
+            if (string.IsNullOrEmpty(token))
+            {
+                return null;
+            }
+
+            _httpClient.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.GetAsync("api/account/get-info");
+            if (!response.IsSuccessStatusCode)
+            {
+                return null;
+            }
+            var userProfile = await response.Content.ReadFromJsonAsync<UserProfileDto>();
+            return userProfile;
+        }
+
         /*public async Task<Product?> GetById(int id)
         {
             return await _httpClient.GetFromJsonAsync<Product?>($"/api/Product/{id}");
